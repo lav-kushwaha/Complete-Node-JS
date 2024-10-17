@@ -1,0 +1,10 @@
+// Global Object in Browser vs Node.js:
+
+// Browser:
+// window = self = frames = globalThis = this (in global scope)
+// All refer to the global window object.
+
+// Node.js:
+// window, self, and frames don’t exist, but globalThis and global point to the global object.
+
+// 🖥️ In browsers, window is the global object. In Node.js, it's global.
