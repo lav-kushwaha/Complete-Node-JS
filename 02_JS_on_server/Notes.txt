@@ -1,0 +1,26 @@
+JavaScript on the Server (Node.js)
+
+#Overview
+• Node.js is a JavaScript runtime built on Chrome's V8 engine, allowing JavaScript to run on the server side.
+• It uses an event-driven, non-blocking I/O model, making it efficient for handling multiple connections.
+
+#Key Concepts
+1. Event Loop: Manages asynchronous operations, enabling non-blocking execution.
+2. Modules: Uses CommonJS or ES Modules to structure code. Import modules with require (CommonJS) or import (ESM).
+3. Middleware: Functions in frameworks like Express.js to process requests and responses (e.g., for logging, authentication).
+4. Routing: Defines how the server responds to different endpoints (URLs) for RESTful APIs.
+
+#Advantages
+• Unified Language: Use JavaScript for both client-side and server-side development.
+• Performance: Fast execution and high throughput due to the asynchronous nature.
+• Scalability: Can handle many connections simultaneously.
+• Rich Ecosystem: Access to thousands of libraries via npm (Node Package Manager).
+
+#Common Use Cases
+• Web Applications: Server-side logic for dynamic web apps.
+• RESTful APIs: Communication between client and server applications.
+• Real-Time Applications: Chat apps, online gaming, collaborative tools (using libraries like Socket.io).
+• Microservices: Structuring applications as independent services.
+
+#Conclusion
+Node.js enables powerful server-side JavaScript applications, offering a fast, scalable, and versatile framework for modern web development.
