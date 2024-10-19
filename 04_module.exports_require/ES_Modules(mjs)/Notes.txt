@@ -1,0 +1,105 @@
+A concise version of the notes on ES Modules:
+
+#ES Modules (ECMAScript Modules)
+
+#Overview
+- Introduced in ES6 (2015).
+- Use `import` and `export` for modular code.
+- Supported in modern browsers and Node.js (v12+).
+
+#Key Features
+- Static Structure: Imports/exports declared at the top level.
+- Asynchronous Loading: Supports dynamic imports.
+- Compatibility: Works in both browsers and Node.js.
+
+#Basic Syntax
+
+#Exporting
+You can export functions, objects, or variables.
+
+// math.js
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+
+#Importing
+To use exported members:
+
+// app.js
+import { add, subtract } from './math.js';
+
+console.log(add(5, 3));       // 8
+console.log(subtract(5, 3));  // 2
+
+#Default Exports
+A module can have a single default export.
+
+// greet.js
+const greet = (name) => `Hello, ${name}!`;
+export default greet;
+
+*Usage:
+
+// main.js
+import greet from './greet.js';
+console.log(greet('Alice')); // Hello, Alice!
+
+#Re-exporting
+Combine exports from different modules.
+
+// shapes.js
+export const square = (side) => side * side;
+export const circle = (radius) => Math.PI * radius * radius;
+
+// index.js
+export { square, circle } from './shapes.js';
+
+#Dynamic Imports
+Load modules asynchronously.
+
+const loadModule = async () => {
+    const module = await import('./dynamicModule.js');
+    console.log(module.sayHello());
+};
+loadModule();
+
+#Importing All Exports
+Import everything as an object.
+
+// utilities.js
+export const add = (a, b) => a + b;
+export const multiply = (a, b) => a * b;
+
+// app.js
+import * as utils from './utilities.js';
+console.log(utils.add(2, 3)); // 5
+
+Running ES Modules
+- Use `.mjs` extension or set `"type": "module"` in `package.json`.
+
+{
+  "type": "module"
+}
+
+# **Conclusion**
+- ES Modules facilitate modular JavaScript code, enhancing code organization and reusability.
+
+===================================================================================================================
+
+#Running ES Modules :
+
+To run ES modules in Node.js:
+
+1.Use .mjs extension for your module files, or
+2.Set "type": "module" in your package.json.
+
+Example of package.json:
+
+{
+  "name": "my-es-modules",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  }
+}

@@ -12,3 +12,17 @@ export function calculateSum(a, b) {
 
 export const name = "Lav Kushwaha";
 
+
+// 1. Exporting from a Module
+// You can export variables, functions, or classes from a module using the export keyword.
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+
+//2. Default Exports
+//A module can also export a single value or function as the default export.
+const greet = (name) => `Hello, ${name}!`;
+export default greet;
+
+
+
+
