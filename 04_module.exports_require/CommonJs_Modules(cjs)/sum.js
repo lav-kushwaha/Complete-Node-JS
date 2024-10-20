@@ -15,11 +15,17 @@ var name = "Lav Kushwaha";
 
 // Export the calculateSum function from the sum.js module
 
-// Exporting multiple methods or variables by wrapping them inside an object
+// Exporting multiple methods or variables by wrapping them inside an object.
+//module.exports is the the empty object.
+//ex - console.log(module.exports); //{}
 module.exports = {
     name: name,
     calculateSum: calculateSum
 };
+
+// //we can also export like this.
+// module.exports.name = name;
+// module.exports.calculateSum = calculateSum;
 
 // =================== OR ===================
 // We can also export directly without repeating variable names if they match
