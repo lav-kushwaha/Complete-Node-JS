@@ -1,0 +1,94 @@
+Node.js Modules: require and module.exports Explained
+
+1. Module Encapsulation with IIFE
+IIFE (Immediately Invoked Function Expression):
+
+• Every Node.js module is wrapped inside an IIFE to ensure module-level scope.
+• This prevents variables and functions defined inside one module from leaking into the global scope.
+
+Example:
+(function() {
+    // Module code goes here
+})();
+
+• This makes all variables and functions private within the module.
+
+Example:
+
+require("./sum.js");
+
+(function() {
+    function sum(a, b) {
+        const result = a + b;
+        console.log(result);
+    }
+})();
+
+2. Accessing module.exports and require
+
+• How require and module.exports Work:
+
+• Node.js passes module and require as arguments to the IIFE, allowing them to be used inside the module.
+• module.exports: The object that is returned when a module is required elsewhere.
+• require: Used to load other modules into the current file.
+
+Example:
+
+(function(module, require) {
+    // Define function
+    function sum(a, b) {
+        const result = a + b;
+        console.log(result);
+    }
+
+    // Export the function
+    module.exports = { sum };
+})(module, require);
+
+Explanation:
+• The module.exports object is what gets exposed to other files when they require this module.
+• You can use require to load other modules into the current file.
+
+3. Steps of require and module.exports
+• When you use require('./path'), Node.js follows these steps:
+
+   1.Resolving the Module:
+    • Determines if the module is a:
+        • Local module (e.g., ./localpath),
+        • JSON file,
+        • Node.js core module (e.g., fs, path).
+   2.Loading the Module:
+     • Loads the content of the file, which can be a JavaScript file, JSON, or even native code.
+
+   3.Wrapping in IIFE:
+     • The module’s code is wrapped inside an IIFE, with module, exports, and require passed as arguments.
+    
+   4.Code Execution:
+    • The module’s code is executed, and module.exports determines what will be returned when the module is required.
+    
+   5.Caching:
+    • Once a module is loaded, it’s cached, so the next time it's required, the cached version is used instead of reloading and re-executing the module.
+
+4. Module Caching
+ • Caching Mechanism:
+   • When a module is loaded, Node.js caches it in memory.
+   • This means that the module will only be executed once, even if it’s required multiple times in different files.
+ • Performance Benefits:
+   • The cache improves performance by eliminating redundant module executions.
+Example:
+// First time, the module is loaded and executed
+const sum = require('./sum.js');
+
+// Next time, the cached version is used
+const sumAgain = require('./sum.js');
+
+#Summary
+1.IIFE Wrapping: Node.js wraps every module inside an IIFE for encapsulation, preventing variables from leaking into the global scope.
+2.Accessing module and require: Node.js injects module and require into each module, making them available inside the IIFE.
+3.require Process:
+• Resolves the module.
+• Loads the module.
+• Wraps it in IIFE.
+• Executes the code.
+• Caches the result.
+4. Caching: Loaded modules are cached to avoid re-execution, improving performance.
