@@ -113,5 +113,7 @@ let wrap = function(script) { // eslint-disable-line func-style
 */
 
 
-//Get The File name 
+//Get The File name.
 // console.log(__filename); //A:\complete-nodeJs\05_Diving_Into_Nodejs_GithubRepo\sum.js
+//Directory name.
+//console.log(__dirname); //A:\complete-nodeJs\05_Diving_Into_Nodejs_GithubRepo
