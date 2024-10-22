@@ -57,6 +57,8 @@ Note : module or file (ex- script.js) code not directly passed inside the V8 fir
 
 /*
 #require("./path")
+=>Find require method implementation in node js.
+//https://github.com/nodejs/node/blob/main/lib/internal/modules/helpers.js
 
 Steps : 
 
@@ -69,7 +71,47 @@ and accordingly it resolves the module.
 2. Loading the module
 => loads the file content according to file type - localmodule, json,utils.folder or node module
 
-3. wraps inside the IIFE
+3. Compile wraps inside the IIFE
 4. code evolution - module.exports return to require whatever we exports.
 5.(Imp) caching - here module is cache
 */
+
+
+//==========================================================================================================================================
+
+/**
+//INTERNAL WORKING OF REQUIRE :
+
+//Module code wraps inside the IIFE below the code of internal working of require.
+//https://github.com/nodejs/node/blob/main/lib/internal/modules/cjs/loader.js
+
+/**
+ * Add the CommonJS wrapper around a module's source code.
+ * @param {string} script Module source code.
+ */
+
+//wrap function where our code wraps inide it - script is our code
+//IIFE :
+/*
+let wrap = function(script) { // eslint-disable-line func-style
+    return Module.wrapper[0] + script + Module.wrapper[1];
+  };
+  
+  //Array :
+  const wrapper = [
+    '(function (exports, require, module, __filename, __dirname) { ',
+    '\n});',
+  ];
+  
+  //IIFE :
+  '(function (exports, require, module, __filename, __dirname) { ',
+      
+        //script code
+        //ALL the code wraps inside this IIFE, whatever we write.
+    
+  '\n});' 
+*/
+
+
+//Get The File name 
+// console.log(__filename); //A:\complete-nodeJs\05_Diving_Into_Nodejs_GithubRepo\sum.js

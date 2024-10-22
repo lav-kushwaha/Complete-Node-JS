@@ -60,7 +60,7 @@ Explanation:
    2.Loading the Module:
      • Loads the content of the file, which can be a JavaScript file, JSON, or even native code.
 
-   3.Wrapping in IIFE:
+   3.Wrapping in IIFE compile:
      • The module’s code is wrapped inside an IIFE, with module, exports, and require passed as arguments.
     
    4.Code Execution:
@@ -92,3 +92,37 @@ const sumAgain = require('./sum.js');
 • Executes the code.
 • Caches the result.
 4. Caching: Loaded modules are cached to avoid re-execution, improving performance.
+
+//===============================================================================================================================================================================================================================
+
+//NOTE : if you want to open github code into vscode - go to github code and press (.) dot it will automatically open github code into vscode.
+
+//INTERNAL WORKING OF REQUIRE :
+
+//Module code wraps inside the IIFE below the code of internal working of require.
+//https://github.com/nodejs/node/blob/main/lib/internal/modules/cjs/loader.js
+
+/**
+ * Add the CommonJS wrapper around a module's source code.
+ * @param {string} script Module source code
+ */
+
+//wrap function where our code wraps inide it - script is our code
+//IIFE :
+let wrap = function(script) { // eslint-disable-line func-style
+  return Module.wrapper[0] + script + Module.wrapper[1];
+};
+
+//Array :
+const wrapper = [
+  '(function (exports, require, module, __filename, __dirname) { ',
+  '\n});',
+];
+
+//IIFE :
+'(function (exports, require, module, __filename, __dirname) { ',
+    
+      //script code
+      ALL the code wraps inside this IIFE, whatever we write.
+  
+'\n});'
