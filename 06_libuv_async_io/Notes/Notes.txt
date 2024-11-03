@@ -2,3 +2,6 @@
 //js is a synchronous but with the super power of node it becomes async
 //which some code execute quickly is known as synchronous
 //which some code execute and take some time is known as async
+//So, JavaScript itself is synchronous, but with the power of Node.js, it can 
+handle asynchronous operations, allowing JavaScript to perform multiple tasks 
+concurrently
