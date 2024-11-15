@@ -1,7 +1,6 @@
 const crypto = require("node:crypto");
 
 console.log("Hello, Lav!");
-
 var a = 1078698;
 var b = 20986;
 
@@ -12,7 +11,7 @@ console.log("First key is generated");
 
 //This callback will only be pushed to stack in v8 once the call stack is empty.
 setTimeout(()=>{
-    console.log("Call me right now");  
+    console.log("Call me right now");
 },0) //it will only be called once call stack of main thread is empty - main thread where js engine is running.
 
 
