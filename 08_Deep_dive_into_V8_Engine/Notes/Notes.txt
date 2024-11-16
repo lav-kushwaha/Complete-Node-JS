@@ -1,0 +1,6 @@
+Q.What is javascript? interpreted or compiled?
+=>JavaScript is considered an interpreted language, meaning that the code is read and executed line by line by the browser's JavaScript engine without needing a separate compilation step beforehand; however, modern JavaScript engines often use Just-In-Time (JIT) compilation to optimize performance during execution. 
+#Key points about JavaScript being interpreted:
+Direct execution: When you load a webpage with JavaScript code, the browser directly interprets and runs the code without needing a separate compilation phase. 
+Line-by-line execution: The interpreter reads and executes the JavaScript code line by line. 
+Flexibility for development: This allows developers to see the effects of code changes in real-time. 
