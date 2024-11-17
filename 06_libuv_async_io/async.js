@@ -1,4 +1,6 @@
-const fs = require("node:fs");
+// const fs = require("node:fs");
+const fs = require("fs");
+
 
 const https = require("https");
 
@@ -8,8 +10,8 @@ var a = 1078698;
 var b = 20986;
 
 //Synchronous
-fs.readFileSync("./file.txt","utf8"); //10ms
-console.log("This will execute only after file read.");
+// fs.readFileSync("./file.txt","utf8"); //10ms
+// console.log("This will execute only after file read.");
 
 
 https.get("https://dummyjson.com/products/1",(res)=>{
