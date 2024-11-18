@@ -85,3 +85,6 @@ Meanwhile, the main thread continues to execute, printing "This line executes be
 =>All the callbacks are wait inside the callback queues.
 =>Before executing any phase callbacks of event loop the priority queues(process.nextTick() and promise callback) are executed.
 =>All the phase of callbacks are wait inside the "separate" callback queues.
+=>Event loop will wait on poll phase, if every callbacks are excuted.(IMP)
+=>Event loop of browser and node both are different.
+=>In the browser event loop is keep running but in node js when it has nothing to do, it will wait on poll phase (Its kind of semi-infinite loop).

@@ -20,6 +20,7 @@ function printA() {
 printA();
 console.log("Last line of the file.");
 
+//Note : First of all, all the synchronous code will run then async code will execute.
 // a=100
 // Last line of the file.
 // process.nextTick
