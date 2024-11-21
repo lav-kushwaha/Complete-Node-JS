@@ -80,6 +80,7 @@ In this example, the fs.readFile function reads the contents of a file asynchron
 The callback function is executed when the file reading completes, allowing you to process the data. 
 Meanwhile, the main thread continues to execute, printing "This line executes before the file is read." to the console.
 
+=========================================================================================================================================================================================================
 
 #Event Loop
 =>All the callbacks are wait inside the callback queues.
