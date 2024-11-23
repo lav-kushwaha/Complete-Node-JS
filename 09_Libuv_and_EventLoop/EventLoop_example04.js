@@ -15,3 +15,14 @@ process.nextTick(() => {
 });
 
 console.log("Last line of the file.");
+
+
+// Final Output:
+//  The final output of the code is:
+//  Last line of the file.
+//  Process.nextTick
+//  inner nextTick
+//  promise
+//  Timer expired
+//  setImmediate
+//  File reading CB
