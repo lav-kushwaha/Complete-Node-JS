@@ -90,3 +90,12 @@ Meanwhile, the main thread continues to execute, printing "This line executes be
 => The event loop behaves differently in browsers and Node.js due to their respective environments.
 => In browsers, the event loop runs continuously as part of the runtime. 
 => In Node.js, it waits in the poll phase but exits the process when there’s nothing left to do.
+=> One full cycle of event loop is known as a one-tick. 
+
+#Phases Overview
+=> timers: this phase executes callbacks scheduled by setTimeout() and setInterval().
+=> pending callbacks: executes I/O callbacks deferred to the next loop iteration.
+=> idle, prepare: only used internally.
+=> (Imp Phase) poll: retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks, the ones scheduled by timers, and setImmediate()); node will block here when appropriate.
+=> check: setImmediate() callbacks are invoked here.
+=> close callbacks: some close callbacks, e.g. socket.on('close', ...).
