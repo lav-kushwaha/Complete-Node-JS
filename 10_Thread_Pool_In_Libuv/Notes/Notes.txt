@@ -1,0 +1,5 @@
+Q.What is the size of UV thread pool by default?
+=>There are 4 size of UV thread pool by default.
+
+Q. When Libuv is using thread Pool?
+=>Libuv uses thread pool when it has to load fs module, crypto and dns lookup.
