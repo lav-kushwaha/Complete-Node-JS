@@ -1,0 +1,7 @@
+Q.What is server ?
+=>When someone says server means it can sometimes refer to hardware and it can sometimes refer to software.
+
+Q.How client and sever works ?
+=>when the client is request something it makes a socket connections and the server fetches the data and gives it back and then socket connections close.
+=>For every new client req it make new socket connections and fetches the data from sever and then it will closed.
+=>Sockets connections made between client and server.
