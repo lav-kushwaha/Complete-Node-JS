@@ -1,0 +1,8 @@
+Steps to get connection :
+
+1.Go to mongoDb website
+2.create a free M0 cluster
+3.create a user
+4.Get the connection string.
+
+const URI = "mongodb+srv://lavkushwaha:<password>@lavdb.dfcx5.mongodb.net/?retryWrites=true&w=majority&appName=lavdb"
