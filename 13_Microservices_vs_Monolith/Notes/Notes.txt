@@ -1,0 +1,33 @@
+PM - product manager/project manager
+SDET - software developer engineering testing
+EM - engineering manager
+SDLC - software developer life cycles
+
+
+#Monolith vs Microservices
+
+Monolith and microservices are two different architectural approaches to building and deploying software applications. 
+They represent different ways of structuring and managing an application's components, scalability, and deployment.
+
+Monolithic Architecture:
+Definition:
+A monolithic application is built as a single unified unit. 
+All the components (e.g., user interface, business logic, database) are combined and deployed together.
+
+Microservices Architecture:
+Definition:
+Microservices break the application into smaller, independent services. 
+Each service focuses on a specific business function, and they communicate with each other over a network.
+
+
+#When to Use Each Architecture:
+
+#Monolithic:
+Best for small to medium-sized applications
+Startups or early-stage projects needing simplicity
+Teams focused on rapid development
+
+#Microservices:
+Best for large-scale, complex applications
+Organizations needing flexibility, scalability, and faster releases
+Teams capable of managing distributed systems
