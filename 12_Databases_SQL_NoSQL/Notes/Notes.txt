@@ -1,8 +1,26 @@
-Steps to get connection :
+#Steps to get connection :
 
-1.Go to mongoDb website
-2.create a free M0 cluster
-3.create a user
+1.Go to mongoDb website.
+2.create a free M0 cluster.
+3.create a user.
 4.Get the connection string.
+5.Install mongoDb compass.
 
 const URI = "mongodb+srv://lavkushwaha:<password>@lavdb.dfcx5.mongodb.net/?retryWrites=true&w=majority&appName=lavdb"
+
+//To see the version of mongoDb
+ mongod --version
+
+//npm - mongodb - api docs to see how to use mongoDb package
+ https://www.npmjs.com/package/mongodb
+
+//API DOCS - version - 6.8
+ //https://mongodb.github.io/node-mongodb-native/6.8/
+
+ //Collections - Methods
+ //https://mongodb.github.io/node-mongodb-native/6.8/classes/Collection.html
+
+#Homework :
+Install mongoDb package - take reference from docs.
+Create a connection from code.
+Practice documents CRUD operations.(create,read,update,delete)
