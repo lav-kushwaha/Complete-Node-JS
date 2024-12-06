@@ -1,1 +1,6 @@
 Note : if your project planning is good, writing code is very easy.
+
+#Read about :
+REST API
+Diff btw put and patch
+HTTP method
