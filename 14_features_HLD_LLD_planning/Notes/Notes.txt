@@ -4,3 +4,8 @@ Note : if your project planning is good, writing code is very easy.
 REST API
 Diff btw put and patch
 HTTP method
+
+
+#Diff btw put and patch
+Use PUT when you want to replace a resource entirely.
+Use PATCH when you only need to modify specific attributes.
