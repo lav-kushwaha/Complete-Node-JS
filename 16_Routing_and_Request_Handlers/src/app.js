@@ -4,6 +4,7 @@ const app = express();
 
 //This will match all the HTTP method API calls to /test
 //code order matters alot(IMP)
+//callback function is known as route handlers
 // app.use('/',(req,res)=>{
 //     res.send("Hello world");
 // });
