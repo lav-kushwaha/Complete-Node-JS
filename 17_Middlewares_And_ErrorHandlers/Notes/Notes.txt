@@ -1,0 +1,61 @@
+#Steps:
+1.create a repository
+2.Initialize the repository
+3.node_modules, package.json, package-lock.json
+4.Install express
+5.create a server
+6.Listen to port
+7.write request handlers for /test, /hello
+8.Install nodemon and update scripts inside package.json
+
+#Read about :
+- diff between caret and tilde (^ vs ~)
+- what are dependencies
+- what is the use of "-g" while npm Install
+
+#Homework :
+- Initialize git
+- .gitignore
+- create a remote repo on github
+- push all code to remote origin
+- play with routes and route extensions ex. /hello, /, hello/2
+- order of the routes matter a lot..
+- Install postman app and make a workspace /collection>test API call
+- Write logic to handle GET, POST, PUT, PATCH, DELETE, API calls and test them on postman
+- Explore routing and use of ?, :, +, (), * in the routes
+- Use of regex in routes /a/ , /.*fly$/  
+- Reading the query params in the routes
+- Reading the dynamic routes
+
+
+#Notes :
+1.Listen is accepting the req from outside worlds, once we are creating server.
+2.From client side we make request (i.e, localhost:3000) and from server side "listen" is used to accept req from client side and we send response from server side.
+
+#Middleware
+Middleware: Middleware functions are functions that have access to the request object (req), the response object (res), and the next function in the application's request-response cycle.
+
+Purpose of next():
+
+Passing Control:
+The primary purpose of next() is to pass control to the next middleware function in the stack. 
+If you don't call next(), the request-response cycle will be halted, and the subsequent middleware functions won't be executed.
+
+Error Handling:
+You can also use next() to pass an error object to the error-handling middleware. 
+This allows you to gracefully handle errors that occur during the request-response cycle. 
+
+const express = require('express');
+const app = express();
+
+app.use((req, res, next) => {
+  console.log('First middleware function');
+  next(); // Pass control to the next middleware
+});
+
+app.use((req, res, next) => {
+  console.log('Second middleware function');
+  res.send('Hello from the second middleware!');
+});
+
+app.listen(3000);
