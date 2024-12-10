@@ -95,6 +95,8 @@ app.use('/user', (req, res, next) => {
 // 2. You should only send one response per request to avoid errors. Calling `res.send()` multiple times will result in an error.
 // 3. If you don't call `next()` in a route handler, the request will not proceed to the next handler, and the response will not be sent until `next()` is called or you send a response in the current handler.
 
+
+
 //This listen method accept the req from client side and then response to the client.
 app.listen(3000,()=>{
     console.log("Server is listening successfully on 3000");
