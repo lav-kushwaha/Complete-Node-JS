@@ -22,7 +22,7 @@ const app = express();
 
 
 //=====================================================================================================================================================================================================================================================================================
-// #Different Cases :
+// #Different Cases : Multiple routes handler or middleware chain.
 
 // Case 1: In this, when we request the /user route, it will call the first route handler
 // which will execute and log to the console, and then res.send("Response!!") sends the response,
@@ -117,5 +117,3 @@ app.use('/user', (req, res, next) => {
 app.listen(3000,()=>{
     console.log("Server is listening successfully on 3000");
 });
-
-
