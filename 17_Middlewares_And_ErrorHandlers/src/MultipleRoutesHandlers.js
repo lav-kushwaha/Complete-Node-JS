@@ -2,10 +2,27 @@ const express = require("express");
 const app = express();
 
 
+//Example : (v.imp)
 // This will match all the HTTP method API calls to /user
 // code order matters a lot (IMP)
 // user - route, callback - route handler
 // there can be multiple route handlers
+
+// Middleware that handles all requests to the root route ("/")
+// The `app.use()` method is used to define a middleware function that matches all requests
+// to the specified path ("/"). In this case, it handles the root path of the application.
+
+// If we use a slash ("/") in `app.use()`, it will handle all requests to the root path and any subsequent paths.
+// The middleware will catch requests that start with "/", and since it sends a response,
+// the request-response cycle is completed here, and control will not pass to any subsequent route handler.
+// app.use("/", (req, res) => {
+//     // Sends a response to the client with the message "Handle/Route"
+//     res.send("Handle/Route");
+// });
+
+
+//=====================================================================================================================================================================================================================================================================================
+// #Different Cases :
 
 // Case 1: In this, when we request the /user route, it will call the first route handler
 // which will execute and log to the console, and then res.send("Response!!") sends the response,
@@ -94,7 +111,6 @@ app.use('/user', (req, res, next) => {
 // 1. Once `res.send()` is called, the response is sent, and no more route handlers are executed unless you call `next()` explicitly.
 // 2. You should only send one response per request to avoid errors. Calling `res.send()` multiple times will result in an error.
 // 3. If you don't call `next()` in a route handler, the request will not proceed to the next handler, and the response will not be sent until `next()` is called or you send a response in the current handler.
-
 
 
 //This listen method accept the req from client side and then response to the client.
