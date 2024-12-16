@@ -31,47 +31,68 @@ const app = express();
 //Note : main job of server is to sending the data back or response to the client.
 
 //=======================================================================================================================================================================================================================================================
+//#Authorization :
 
 //Handle auth middleware for all GET, POST, PUT, DELETE.
 //app.use() and app.all() works for all - for eg - GET, POST, PUT and DELETE.
 
-//Examples :
+// Example 1 (v.v.v.imp): Middleware for routes starting with "/admin"
 
-app.use("/admin",(req,res,next)=>{
-    const token = "xyz";
-    const isAdminAuthorized = token ==="yz";
-    if(!isAdminAuthorized){
-        res.status(401).send("Unauthorized!!");
-    }else{
-        next(); //it will passed the control to the next middleware if admin is authorized.
-    }
+const {adminAuth,userAuth} = require("./middleware/auth.js")
+
+// Middleware for only admin authorization
+app.use("/admin",adminAuth);
+
+// Routes under "/admin"
+app.get("/admin/getAllData", (req, res) => {
+    // When this route is requested, the admin authorization middleware will first check if the request is authorized
+    res.send("All data sent!!");
 });
 
-app.get("/admin/getAllData",(req,res)=>{
-    //Login of checked if request is authorized.
-    const token = "xyz";
-    const isAdminAuthorized = token ==="yz";
-    if(isAdminAuthorized){
-        res.send("get your data"); //by default status code is 200(Ok)
-    }else{
-        res.status(401).send("Unauthorized request!!!"); //401 - Unauthorized
-    }
+app.get("/admin/deleteUser", (req, res) => {
+    // When this route is requested, the admin authorization middleware will first check if the request is authorized
+    res.send("User deleted!!");
 });
 
-app.get("/admin/deleteUser",(req,res)=>{
-    //Login of checked if request is authorized.
-    const token = "xyz";
-    const isAdminAuthorized = token ==="yz";
-    if(isAdminAuthorized){
-        res.send("get your data"); //by default status code is 200(Ok)
-    }else{
-        res.status(401).send("Unauthorized request!!!"); //401 - Unauthorized
+/*
+Explanation of Example 1:
+- The `app.use("/admin")` middleware is applied to all routes starting with `/admin`.
+- Therefore, for requests like `/admin/getAllData` or `/admin/deleteUser`, the middleware will run first.
+- If the admin is not authorized (i.e., the token does not match), the request will return a `401 Unauthorized` response and will not proceed to the route handler.
+- If the admin is authorized, the `next()` function will pass the control to the corresponding route handler.
+*/
+
+// Example 2 (v.v.v.imp): Middleware for "/admin" routes but not affecting unrelated routes
+
+// Middleware for admin authorization
+app.use("/admin", (req, res, next) => {
+    console.log("Admin auth is being checked!!");
+
+    const token = "lav"; // Hardcoded Authorization Token for simplicity
+
+    // Check if the token matches the expected value
+    const isAdminAuthorized = token === "lav";
+
+    if (!isAdminAuthorized) {
+        return res.status(401).send("Unauthorized request!!"); // If not authorized, return 401 status
     }
+    next(); // If authorized, pass control to the next middleware or route handler
 });
 
+// Routes that DO NOT start with "/admin"
+app.get("/user", userAuth, (req, res) => {
+    // This route does not start with "/admin", so the admin authorization middleware will NOT be executed
+    res.send("All user data sent!!");
+});
 
+/*
+Explanation of Example 2:
+- The `app.use("/admin")` middleware is only applied to routes that start with `/admin`.
+- In this case, the `/user` route does not match the `/admin` prefix, so the admin authorization middleware will not run.
+- This means requests to `/user` will directly execute the route handler without being checked for admin authorization.
+*/
 
-//This listen method accept the req from client side and then response to the client.
-app.listen(3000,()=>{
-    console.log("Server is listening successfully on 3000");
+// Server listener
+app.listen(3000, () => {
+    console.log("Server is successfully listening on port 3000");
 });
