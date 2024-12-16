@@ -31,7 +31,7 @@ const app = express();
 //Note : main job of server is to sending the data back or response to the client.
 
 //=======================================================================================================================================================================================================================================================
-//#Authorization :
+//#Authorization and middleware :
 
 //Handle auth middleware for all GET, POST, PUT, DELETE.
 //app.use() and app.all() works for all - for eg - GET, POST, PUT and DELETE.
