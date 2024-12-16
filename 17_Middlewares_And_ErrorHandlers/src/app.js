@@ -30,14 +30,42 @@ const app = express();
 
 //Note : main job of server is to sending the data back or response to the client.
 
+//=======================================================================================================================================================================================================================================================
 
-//Example :
-app.get("/admin/getAllData",(req,res)=>{
+//Handle auth middleware for all GET, POST, PUT, DELETE.
+//app.use() and app.all() works for all - for eg - GET, POST, PUT and DELETE.
+
+//Examples :
+
+app.use("/admin",(req,res,next)=>{
     const token = "xyz";
-    if(token==="xyz"){
-        res.send("get your data");
+    const isAdminAuthorized = token ==="yz";
+    if(!isAdminAuthorized){
+        res.status(401).send("Unauthorized!!");
     }else{
-        res.status(401).send("Invalid!!!");
+        next(); //it will passed the control to the next middleware if admin is authorized.
+    }
+});
+
+app.get("/admin/getAllData",(req,res)=>{
+    //Login of checked if request is authorized.
+    const token = "xyz";
+    const isAdminAuthorized = token ==="yz";
+    if(isAdminAuthorized){
+        res.send("get your data"); //by default status code is 200(Ok)
+    }else{
+        res.status(401).send("Unauthorized request!!!"); //401 - Unauthorized
+    }
+});
+
+app.get("/admin/deleteUser",(req,res)=>{
+    //Login of checked if request is authorized.
+    const token = "xyz";
+    const isAdminAuthorized = token ==="yz";
+    if(isAdminAuthorized){
+        res.send("get your data"); //by default status code is 200(Ok)
+    }else{
+        res.status(401).send("Unauthorized request!!!"); //401 - Unauthorized
     }
 });
 
