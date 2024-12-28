@@ -30,3 +30,15 @@ module.exports = {
     adminAuth,
     userAuth
 }
+
+
+//Q: Why we need middleware ?
+//=>We need middleware because by writing middleware we can customise.
+//Middleware centralizes and simplifies communication, request handling, and cross-cutting concerns like authentication, logging, and error management between systems or application layers.
+//Middleware is like a helper in the middle that makes sure different parts of your app or systems work smoothly together, handling things like checking user access, logging, or fixing errors along the way.
+
+
+
+
+
+

@@ -43,6 +43,11 @@ const {adminAuth,userAuth} = require("./middleware/auth.js")
 // Middleware for only admin authorization
 app.use("/admin",adminAuth);
 
+//user login
+app.get("/user/login",(req,res)=>{
+    res.send("User logged in successfully!");
+});
+
 // Routes under "/admin"
 app.get("/admin/getAllData", (req, res) => {
     // When this route is requested, the admin authorization middleware will first check if the request is authorized
