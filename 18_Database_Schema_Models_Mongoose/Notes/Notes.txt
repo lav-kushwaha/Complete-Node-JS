@@ -1,0 +1,45 @@
+#Steps:
+1.create a repository
+2.Initialize the repository
+3.node_modules, package.json, package-lock.json
+4.Install express
+5.create a server
+6.Listen to port
+7.write request handlers for /test, /hello
+8.Install nodemon and update scripts inside package.json
+
+#Read about :
+- diff between caret and tilde (^ vs ~)
+- what are dependencies
+- what is the use of "-g" while npm Install
+
+=================================================================================================================================================================================================================================================================================================================================================================
+
+#Homework :
+- Initialize git
+- .gitignore
+- create a remote repo on github
+- push all code to remote origin
+- play with routes and route extensions ex. /hello, /, hello/2
+- order of the routes matter a lot..
+- Install postman app and make a workspace /collection>test API call
+- Write logic to handle GET, POST, PUT, PATCH, DELETE, API calls and test them on postman
+- Explore routing and use of ?, :, +, (), * in the routes
+- Use of regex in routes /a/ , /.*fly$/  
+- Reading the query params in the routes
+- Reading the dynamic routes
+
+- Multiple routes handlers - play with the code
+- next()
+- next function and errors along with res.send()
+- app.use("/route",rH,[rh2,rh3],rH4,rh5)
+- Read about middleware and why do we need it ?
+- How express JS basically handles requests behind the scenes
+- Differences btw app.use() vs app.all() (IMP)
+- Write a dummy auth middleware for admin (IMP)
+- write a dummy auth middleware for all user routes, except /user/login
+- Error Handling using app.use("/",(err,req,res.next)=>{});
+
+
+
+=================================================================================================================================================================================================================================================================================================================================================================
