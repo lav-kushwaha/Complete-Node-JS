@@ -40,6 +40,15 @@
 - write a dummy auth middleware for all user routes, except /user/login
 - Error Handling using app.use("/",(err,req,res.next)=>{});
 
+- Create a free cluster on MongoDB official website (MongoDB Atlas)
+- Install mongoose library
+- Connect your application to the database "<connection-url>"/devTinder
+- Call the connectDB function and connect to database before starting application on 3000.
 
 
 =================================================================================================================================================================================================================================================================================================================================================================
+#Notes
+Steps :
+1.Always first connect to the database then start server or listen to the app. (IMP)
+2.Create schema - (schema is a identity for documents)(DOCS LINK :https://mongoosejs.com/docs/guide.html)
+3.
