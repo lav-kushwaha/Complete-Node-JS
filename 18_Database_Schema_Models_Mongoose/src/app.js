@@ -17,7 +17,7 @@ connectDB()
     console.error("Database connection cannot be established...",err);
 });
 
-//get
+//get - http method
 app.get("/",(req,res)=>{
     res.send("Hello");
 })
