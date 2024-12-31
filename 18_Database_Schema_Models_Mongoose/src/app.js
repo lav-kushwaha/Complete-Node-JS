@@ -3,6 +3,7 @@ const connectDB = require("./config/database.js");
 
 const app = express();
 
+//connected to db
 connectDB()
 .then(()=>{
     console.log("Database connection established...");  
@@ -14,6 +15,7 @@ connectDB()
     console.error("Database connection cannot be established...",err);
 });
 
+//get
 app.get("/",(req,res)=>{
     res.send("Hello");
 })
