@@ -3,10 +3,12 @@ const connectDB = require("./config/database.js");
 
 const app = express();
 
-//connected to database.
+//connected to mongoDB
 connectDB()
 .then(()=>{
     console.log("Database connection established...");  
+
+    //listening port on 3000
     app.listen(3000,()=>{
         console.log("Server is listening on port 3000..");
     });
