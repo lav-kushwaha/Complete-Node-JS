@@ -3,7 +3,7 @@ const connectDB = require("./config/database.js");
 
 const app = express();
 
-//connected to db
+//connected to database.
 connectDB()
 .then(()=>{
     console.log("Database connection established...");  
