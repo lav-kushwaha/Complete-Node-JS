@@ -20,7 +20,7 @@ connectDB()
 //get - http method
 app.get("/",(req,res)=>{
     res.send("Hello");
-})
+});
 
 
 
