@@ -1,9 +1,31 @@
 const express = require('express');
 const connectDB = require("./config/database.js");
-
+const User = require('./models/user.js');
 const app = express();
 
-//connected to mongoDB
+app.post("/signup", async(req,res)=>{
+
+    //creating a new instance of the user model.
+    const userInstance = new User({
+        firstName:"Talha",
+        lastName:"anjum",
+        emailId:"anjum@gmail.com",
+        password:"talha",
+        age:"25",
+        gender:"male"  
+    });
+
+    try{
+        await userInstance.save();
+        res.send("User added successfully...");
+    }
+    catch(err){
+        res.status(400).send("Error saving the user:"+ err.message)
+    }
+   
+})
+
+//connected to mongoDB.
 connectDB()
 .then(()=>{
     console.log("Database connection established...");  
@@ -15,11 +37,6 @@ connectDB()
 })
 .catch((err)=>{
     console.error("Database connection cannot be established...",err);
-});
-
-//get - http method
-app.get("/",(req,res)=>{
-    res.send("Hello");
 });
 
 
