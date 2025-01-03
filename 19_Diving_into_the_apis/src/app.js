@@ -8,8 +8,6 @@ const app = express();
 app.use(express.json());
 
 app.post("/signup", async(req,res)=>{
-    console.log(req.body);
-
     //creating a new instance of the user model.
     const userInstance = new User(req.body);
 
@@ -22,6 +20,57 @@ app.post("/signup", async(req,res)=>{
     }
    
 });
+
+//Feed API - GET /user - get all the users from the database.
+//find user through emailID
+app.get("/user",async(req,res)=>{
+    const userEmail = req.body.emailId;
+    try{
+       const user = await User.find({emailId:userEmail});
+       if(user.length==0){
+        res.status(404).send("user not found");
+       }else{
+        res.send(user);
+       }
+
+    }catch(err){
+        res.status(400).send("something went wrong.."+err.message);
+    }
+});
+
+//find all user documents
+app.get("/feed",async(req,res)=>{
+    try{
+        const allUser = await User.find({});
+        res.send(allUser);
+
+        if(allUser.length===0){
+            res.status(404).send("All user not found..");
+        }else{
+            res.send(allUser);
+        }
+    }catch(err){
+        res.status(400).send("Something went wrong..");
+    }
+})
+
+//find one user documents by email
+app.get("/userOne",async(req,res)=>{
+    const emailId = req.body.emailId;
+    try{
+        const user = await User.findOne({emailId:emailId});
+        res.send(user);
+
+        if(!user){
+            res.status(404).send("user not found..");
+        }else{
+            res.send(user);
+        }
+    }catch(err){
+        res.status(400).send("Something went wrong..");
+    }
+});
+
 
 //connected to mongoDB.
 connectDB()

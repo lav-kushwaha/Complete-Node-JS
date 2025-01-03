@@ -52,6 +52,7 @@
 - JS Object vs JSON (Differences between).
 - Add the express.json middleware to your app
 - Make your signup API dynamic to recieve data from the end user(ex-postman or client side)
+- User.findOne with dublicates emailID, which object returned
 
 
 =================================================================================================================================================================================================================================================================================================================================================================
