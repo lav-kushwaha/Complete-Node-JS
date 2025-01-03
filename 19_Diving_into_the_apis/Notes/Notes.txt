@@ -1,0 +1,72 @@
+#Steps:
+1.create a repository
+2.Initialize the repository
+3.node_modules, package.json, package-lock.json
+4.Install express
+5.create a server
+6.Listen to port
+7.write request handlers for /test, /hello
+8.Install nodemon and update scripts inside package.json
+
+#Read about :
+- diff between caret and tilde (^ vs ~)
+- what are dependencies
+- what is the use of "-g" while npm Install
+
+=================================================================================================================================================================================================================================================================================================================================================================
+
+#Homework :
+- Initialize git
+- .gitignore
+- create a remote repo on github
+- push all code to remote origin
+- play with routes and route extensions ex. /hello, /, hello/2
+- order of the routes matter a lot..
+- Install postman app and make a workspace /collection>test API call
+- Write logic to handle GET, POST, PUT, PATCH, DELETE, API calls and test them on postman
+- Explore routing and use of ?, :, +, (), * in the routes
+- Use of regex in routes /a/ , /.*fly$/  
+- Reading the query params in the routes
+- Reading the dynamic routes
+
+- Multiple routes handlers - play with the code
+- next()
+- next function and errors along with res.send()
+- app.use("/route",rH,[rh2,rh3],rH4,rh5)
+- Read about middleware and why do we need it ?
+- How express JS basically handles requests behind the scenes
+- Differences btw app.use() vs app.all() (IMP)
+- Write a dummy auth middleware for admin (IMP)
+- write a dummy auth middleware for all user routes, except /user/login
+- Error Handling using app.use("/",(err,req,res.next)=>{});
+
+- Create a free cluster on MongoDB official website (MongoDB Atlas)
+- Install mongoose library.
+- Connect your application to the database "<connection-url>"/devTinder
+- Call the connectDB function and connect to database before starting application on 3000.
+- create a userSchema & userModel.
+- create POST/signup API to add data to database.
+- push some documents using API calls from postman.
+- Error Handling using try, catch - Always remember whenever you interact with database use try,catch.
+
+- JS Object vs JSON (Differences between).
+- Add the express.json middleware to your app
+- Make your signup API dynamic to recieve data from the end user(ex-postman or client side)
+
+
+=================================================================================================================================================================================================================================================================================================================================================================
+#Notes
+Steps :
+1.Always first connect to the database then start server or listen to the app. (IMP)
+2.Create schema - (schema is a identity for documents)(DOCS LINK :https://mongoosejs.com/docs/guide.html)
+3.About Schema :
+=>In Mongoose, a schema is a blueprint or structure for a MongoDB document. 
+=>It defines the shape and structure of the documents within a MongoDB collection, specifying the fields, their data types, and any constraints or validation rules.
+=>A schema in Mongoose is created using the mongoose.Schema class.
+4.Pass schema in mongoose.models(user,userSchema) and export.
+5.Create API and by using models create instance of models using "new" keyword and then call userInstance.save().
+6.Basically most of the mongoose function, whenever we are putting data to database or whenever we are saving, getting data all this api, its return promise so use async,await.
+
+
+#express.json()
+=>Its read the JSON object from postman or client side and convert into js object.
