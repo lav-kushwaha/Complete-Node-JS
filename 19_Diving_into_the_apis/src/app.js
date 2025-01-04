@@ -21,8 +21,7 @@ app.post("/signup", async(req,res)=>{
    
 });
 
-//Feed API - GET /user - get all the users from the database.
-//find user through emailID
+//find user through emailID.
 app.get("/user",async(req,res)=>{
     const userEmail = req.body.emailId;
     try{
@@ -38,6 +37,7 @@ app.get("/user",async(req,res)=>{
     }
 });
 
+//Feed API - GET /user - get all the users from the database.
 //find all user documents
 app.get("/feed",async(req,res)=>{
     try{
@@ -52,9 +52,9 @@ app.get("/feed",async(req,res)=>{
     }catch(err){
         res.status(400).send("Something went wrong..");
     }
-})
+});
 
-//find one user documents by email
+//find one user documents by email.
 app.get("/userOne",async(req,res)=>{
     const emailId = req.body.emailId;
     try{
@@ -68,6 +68,20 @@ app.get("/userOne",async(req,res)=>{
         }
     }catch(err){
         res.status(400).send("Something went wrong..");
+    }
+});
+
+//findByIdAndDelete() user from documents.
+app.get("/deleteUser",async(req,res)=>{
+
+    const userID = req.body.userId;
+    try{
+        // const user = await User.findByIdAndDelete({_id:userID});
+        const user = await User.findByIdAndDelete({userID});
+        res.send(user);
+        res.send("Deleted Successfully...");
+    }catch(err){
+        res.status(400).send("Something went wrong...");
     }
 });
 
