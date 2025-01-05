@@ -38,7 +38,7 @@ app.get("/user",async(req,res)=>{
 });
 
 //Feed API - GET /user - get all the users from the database.
-//find all user documents
+//find all user documents.
 app.get("/feed",async(req,res)=>{
     try{
         const allUser = await User.find({});
@@ -72,8 +72,8 @@ app.get("/userOne",async(req,res)=>{
 });
 
 //findByIdAndDelete() user from documents.
-app.get("/deleteUser",async(req,res)=>{
-
+//Delete a user from a database.
+app.delete("/user",async(req,res)=>{
     const userID = req.body.userId;
     try{
         // const user = await User.findByIdAndDelete({_id:userID});
@@ -85,6 +85,17 @@ app.get("/deleteUser",async(req,res)=>{
     }
 });
 
+//Update data of the user
+app.patch("/user",async(req,res)=>{
+    const userId = req.body.userId;
+    const data = req.body;  
+    try{
+        await User.findByIdAndUpdate(userId,data,{returnDocument:"after"});
+        res.send("User updated successfully..");
+    }catch(err){
+        res.status(400).send("Something went wrong..");
+    }
+});
 
 //connected to mongoDB.
 connectDB()
@@ -99,7 +110,3 @@ connectDB()
 .catch((err)=>{
     console.error("Database connection cannot be established...",err);
 });
-
-
-
-
