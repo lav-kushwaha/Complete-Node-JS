@@ -69,7 +69,9 @@
 - Improve the DB schema - PUT all appropriate validations on each field in schema. 
 - Add timestamps to the useSchema.
 - Add API level validation on Patch request & signup post api.
-- Add API validation for each field 
+- Data Sanitizing - Add API validation for each field.
+- Install validator
+- Explore validator library function and Use validator funcs for pass,email,url.
 
 =================================================================================================================================================================================================================================================================================================================================================================
 #Notes

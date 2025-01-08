@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const userSchema = new mongoose.Schema({
     firstName:{
@@ -15,11 +16,21 @@ const userSchema = new mongoose.Schema({
         lowercase:true,
         required:true,
         unique:true,
-        trim:true
+        trim:true,
+        validate(value){
+            if(!validator.isEmail(value)){ //validator
+                throw new Error("Invalid email address: " + value);
+            }
+        },
     },
     password:{
         type:String,
         required:true,
+        validate(value){
+            if(!validator.isStrongPassword(value)){
+                throw new Error("Enter a strong password:"+ value);
+            }
+        }
     },
     age:{
         type:Number,
@@ -35,7 +46,12 @@ const userSchema = new mongoose.Schema({
     },
     photoUrl:{
         type:String,
-        default:"https://conferenceoeh.com/wp-content/uploads/profile-pic-dummy.png"
+        default:"https://conferenceoeh.com/wp-content/uploads/profile-pic-dummy.png",
+        validate(value){
+            if(!validator.isURL(value)){ //validator
+                throw new Error("Invalid photo URL : " + value);
+            }
+        }
     },
     about:{
         type:String,
