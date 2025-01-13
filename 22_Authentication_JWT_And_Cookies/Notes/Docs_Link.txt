@@ -1,3 +1,7 @@
-DOCS LINK : https://mongoosejs.com/docs/guide.html
+MONGOOSE DOCS LINK : https://mongoosejs.com/docs/guide.html
 VALIDATOR : https://www.npmjs.com/package/validator
 BCRYPT : https://www.npmjs.com/package/bcrypt
+COOKIES : https://expressjs.com/en/5x/api.html#res.cookie
+COOKIES PARSER : https://expressjs.com/id/resources/middleware/cookie-parser.html
+JSONWEBTOKEN : https://www.npmjs.com/package/jsonwebtoken
+

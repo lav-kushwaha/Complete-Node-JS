@@ -75,10 +75,19 @@
 - NEVER TRUST req.body 
 
 - validate data in Signup API.
-- Install bcrypt package.
+- Install bcrypt package. - bcrypt.hash and bcrypt.compare.
 - Create PasswordHash using bcrypt.hash & save the user is encrupted password.
 - Create login API.
 - Compare passwords and throw errors if email or password is invalid.
+
+- Install cookie-parser
+- Just send a dummy cookie to user
+- create GET /profile API and check if you get the cookie back.
+- install JSONWEBTOKEN 
+- In login API, after email and password validation, create a JWT token and send it to user in cookie.
+- Read the cookie inside your profile API and find the logged in user.
+
+
 
 =================================================================================================================================================================================================================================================================================================================================================================
 #Notes
@@ -92,7 +101,21 @@ Steps :
 4.Pass schema in mongoose.models(user,userSchema) and export.
 5.Create API and by using models create instance of models using "new" keyword and then call userInstance.save().
 6.Basically most of the mongoose function, whenever we are putting data to database or whenever we are saving, getting data all this api, its return promise so use async,await.
-
+7.Encrypting password - bcrypt.
+8.Read about cookies parser.
 
 #express.json()
+=>We use express.json() middleware in an Express application to parse incoming JSON payloads.
 =>Its read the JSON object from postman or client side and convert into js object.
+=>express.json() uses the body-parser package internally.
+It:
+1.Reads the raw JSON payload from the request.
+2.Parses it into a JavaScript object.
+3.Attaches it to req.body.
+
+#cookie-parser()
+#What is cookie-parser?
+=>cookie-parser is a middleware for Express that parses cookies attached to client requests and makes them easily accessible via req.cookies.
+=>It helps in both reading cookies sent from the client and optionally signing cookies to ensure integrity.
+
+#JSONWEBTOKEN
