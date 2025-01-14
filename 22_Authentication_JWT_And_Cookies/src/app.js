@@ -5,7 +5,6 @@ const User = require('./models/user.js');
 const {validateSignUpData} = require("./Utils/validation.js");
 const bcrypt = require('bcrypt');
 const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
 const {userAuth} = require("./middleware/auth.js");
 
 //it will works for all the route.
@@ -49,17 +48,15 @@ app.post("/login",async(req,res)=>{
             throw new Error("Invalid credentials..");
         }
         
-        const isPasswordValid = await bcrypt.compare(password, user.password);
+        const isPasswordValid = await user.validatePassword(password);
+
         if(isPasswordValid){
-            
             //create a JWT Token.
             const token = await user.getJWT();
-
             //Add the token to cookie and send the response back to the user.
             res.cookie("token",token,{ 
                 expires: new Date(Date.now() + 900000)
             }); 
-
             res.send("Login successfully!!!");
         
         }else{
