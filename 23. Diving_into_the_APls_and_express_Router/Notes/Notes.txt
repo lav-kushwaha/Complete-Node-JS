@@ -89,12 +89,16 @@
 - write userAuth middleware
 - Add the userAuth middleware in profile API and a new sendConnectionRequest API.
 - Set the expiry of JWT token and cookies to 7 Days.
-- Create userSchema method to getJWT().
+- Create userSchema method to getJWT().(IMP)
 - Create userSchema method to comparepassword(passwordInputByUser).
 
 - Explore tinder APIs 
 - Create a list of all APIs you can think of in devTinder
-- Group Multiple Routes under respective routers.
+- Group Multiple Routes under respective routers.(V.IMP)
+- Read Documention for express.Router()
+- Create routes folder for managing auth, profile, request routers.
+- Create authRouter, profileRouter, requestRouter.
+- Import these routers in app.js
 
 =================================================================================================================================================================================================================================================================================================================================================================
 #Notes
@@ -128,3 +132,41 @@ It:
 #JSONWEBTOKEN
 =>jwt.sign()
 =>jwt.verify()
+
+#express.Router()
+- express.Router() is a feature of the Express.js framework that helps in organizing your application’s routing. 
+- It creates a mini router instance, which you can use to define routes and middleware separately from the main app. 
+- This makes your code modular and easier to maintain.
+
+#Key Uses of express.Router():
+
+1.Modular Routing: Organize routes by separating them into different files or modules.
+
+const express = require('express');
+const router = express.Router();
+
+router.get('/example', (req, res) => {
+    res.send('Hello from the router!');
+});
+
+module.exports = router;
+
+2.Middleware Usage: Attach specific middleware to certain routes or groups of routes.
+
+router.use((req, res, next) => {
+    console.log('Middleware for this router');
+    next();
+});
+
+3.Grouped Routes: Group routes logically, like for different API versions or resources.
+
+const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin');
+
+app.use('/users', userRouter); // All routes for users
+app.use('/admin', adminRouter); // All routes for admin
+
+#Benefits:
+- Separation of Concerns: Keeps the main application file clean.
+- Reusability: Makes routes reusable across different parts of the app.
+- Scalability: Helps in scaling the codebase by grouping related routes together.
