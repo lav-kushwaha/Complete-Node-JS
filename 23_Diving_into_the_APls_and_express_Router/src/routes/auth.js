@@ -27,7 +27,7 @@ authRouter.post("/signup", async(req,res)=>{
    
 });
 
-//login API.
+//Login API.
 authRouter.post("/login",async(req,res)=>{
     try{
         const{emailId,password} = req.body;
@@ -56,5 +56,14 @@ authRouter.post("/login",async(req,res)=>{
         res.status(400).send("ERROR: " + err.message);
     }
 });
+
+//Logout API - To logout just expires the cookies and set the token to the null.
+authRouter.post("/logout", async(req,res)=>{
+    res.cookie("token",null,{
+        expires: new Date(Date.now()),
+    });
+
+    res.send("Logout successfully...");
+})
 
 module.exports = {authRouter};

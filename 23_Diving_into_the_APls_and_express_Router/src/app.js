@@ -2,9 +2,9 @@ const express = require('express');
 const connectDB = require("./config/database.js");
 const app = express();
 const cookieParser = require("cookie-parser");
-const { authRouter } = require('./routes/authRouter.js');
-const { profileRouter } = require('./routes/profileRouter.js');
-const {requestRouter} = require("./routes/requestRouter.js");
+const { authRouter } = require('./routes/auth.js');
+const { profileRouter } = require('./routes/profile.js');
+const {requestRouter} = require("./routes/request.js");
 
 //it will works for all the route.
 //express.json() middleware convert JSON code into JS Object. 
@@ -13,7 +13,7 @@ app.use(express.json());
 //cookie parser middleware help to read cookies from client side.
 app.use(cookieParser());
 
-app.use("/",authRouter,profileRouter,requestRouter);
+app.use("/",authRouter,profileRouter,requestRouter)
 
 //connected to mongoDB.
 connectDB()
