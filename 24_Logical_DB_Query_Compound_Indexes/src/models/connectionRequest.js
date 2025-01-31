@@ -16,10 +16,18 @@ const connectionRequestSchema = new moongoose.Schema({
         //enum are use to restrict value for some users.
         enum:{
             values:["ignored","interested","accepeted","rejected"],
-            message:`{VALUE} is incorrrect status type`
+            message:`${VALUE} is incorrrect status type`
         }
     }
+},
+{
+     timestamps:true
 });
+
+//compound index - index we are using to make query fast.
+//ConnectionRequest.find({fromUserId:id,toUserId;id})
+//1 means ascending order and -1 descending order.
+connectionRequestSchema.index({fromUserId:1});
 
 //whenever save method will called, it will pre saved.
 //Before we save it, pre function will be called.
@@ -31,9 +39,7 @@ connectionRequestSchema.pre("save",function(next){
     }
     next();
 });
-
-
-
+ 
 //model always start with a capital letter.
 const ConnectionRequestModel = new moongoose.model('ConnectionRequestModel',connectionRequestSchema);
 

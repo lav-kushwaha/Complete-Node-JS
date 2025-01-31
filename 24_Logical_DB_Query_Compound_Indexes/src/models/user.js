@@ -18,6 +18,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         lowercase:true,
         required:true,
+        // index : true,//index we are using to make query fast.
         unique:true,
         trim:true,
         validate(value){
@@ -71,6 +72,13 @@ const userSchema = new mongoose.Schema({
 {
     timestamps:true,
 });
+
+//compound Index - Index are use to make out query fast in database.
+//1 means ascending order and -1 means descending order.
+//index :true, - we can also use like this index in schema.
+// userSchema.index({firstName:1});
+// userSchema.index({gender:1});
+
 
 //getJWT - jsonwebtoken.
 userSchema.methods.getJWT = async function() {
