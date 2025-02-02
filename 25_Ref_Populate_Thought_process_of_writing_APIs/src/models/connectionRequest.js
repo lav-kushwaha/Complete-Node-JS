@@ -10,6 +10,7 @@ const connectionRequestSchema = new moongoose.Schema({
     },
     toUserId:{
         type:moongoose.Schema.Types.ObjectId,
+        ref:"User", //reference to the "userSchema" collection.
         required: true,
     },
     status:{

@@ -5,6 +5,7 @@ const User = require("../models/user");
 
 const requestRouter = express.Router();
 
+//Interested and ignored to the touserId from fromUserId.
 requestRouter.post("/request/send/:status/:toUserId",
     userAuth,
     async(req,res)=>{
@@ -58,6 +59,7 @@ requestRouter.post("/request/send/:status/:toUserId",
     }
 });
 
+//accept and reject upcoming request from toUserId
 requestRouter.post("/request/review/:status/:requestId",userAuth,async(req,res)=>{
     try{
        
