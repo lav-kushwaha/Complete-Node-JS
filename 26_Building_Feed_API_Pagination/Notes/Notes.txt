@@ -123,10 +123,23 @@
 - Read about ref and populate https://mongoosejs.com/docs/populate.html
 - Create GET /user/requests/received with all the checks
 - Create GET GET /user/connections
+
 - Logic for GET /feed API
-- Explore the $nin , $and, $ne and other query operatorators
+- Explore the $nin , $and, $ne and other query operators.
 
 Pagination
+
+ //user should see all the user cards except
+        //0. his own card
+        //1. his connections
+        //2. ignored people
+        //3. already sent the connections request
+        
+        //Example : Rahul = [mark,donald,ms dhoni,virat]
+        //R->akshay->rejected   R->Elon->Accepted
+        //A ->cant see rahul
+        //you can only see people whos card you have never seen before also u cant see yourself also.
+
 
 NOTES:
 

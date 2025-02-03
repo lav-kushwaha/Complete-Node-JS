@@ -1,6 +1,7 @@
 const express = require("express");
 const {userAuth} = require("../middleware/auth");
 const ConnectionRequest = require("../models/connectionRequest");
+const user = require("../models/user")
 const userRouter = express.Router();
 
 const USER_SAFE_DATA = "firstName lastName photoUrl age gender about skills";
@@ -56,16 +57,28 @@ userRouter.get("/user/connections/", userAuth, async(req,res)=>{
 
 userRouter.get("/feed",userAuth, async(req,res)=>{
     try{
-        //user should see all the user cards except
-        //0. his own card
-        //1. his connections
-        //2. ignored people
-        //3. already sent the connections request
+        const loggedInUser = req.user;
         
-        //Example : Rahul = [mark,donald,ms dhoni,virat]
-        //R->akshay->rejected   R->Elon->Accepted
-        //A ->cant see rahul
-        //you can only see people whos card you have never seen before also u cant see yourself also.
+        const connectionRequests = await ConnectionRequest.find({
+            $or:[{fromUserId:loggedInUser._id},{toUserId:loggedInUser._id}]
+        }).select("fromUserId toUserId");
+
+        //set contain unique element.
+        const hideUserFromFeed = new Set();
+        connectionRequests.forEach((req)=>{
+            hideUserFromFeed.add(req.fromUserId.toString());
+            hideUserFromFeed.add(req.toUserId.toString());
+        });
+
+        //finding user who are not in the hideUserFromFeed and their id is not equal to the loogedInUserId.
+        const users = await user.find({
+            $and:[
+                {_id:{$nin:Array.from(hideUserFromFeed)}},//not in($nin)
+                {_id:{$ne:loggedInUser._id}},//not equal ($ne)
+            ],
+        }).select(USER_SAFE_DATA);
+
+        res.send(users);
 
     }catch(err){
         res.status(400).json({message:err.message});
