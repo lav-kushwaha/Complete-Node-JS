@@ -124,7 +124,8 @@
 - Create GET /user/requests/received with all the checks
 - Create GET GET /user/connections
 
-- Logic for GET /feed API
+- Logic for GET /feed API.
+- select, skip(), limit().
 - Explore the $nin , $and, $ne and other query operators.
 
 Pagination

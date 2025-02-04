@@ -55,9 +55,16 @@ userRouter.get("/user/connections/", userAuth, async(req,res)=>{
     }
 })
 
+//feed API and pagination
+//feed?page=1&limit=10
 userRouter.get("/feed",userAuth, async(req,res)=>{
     try{
         const loggedInUser = req.user;
+
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) ||10;
+        limit = limit > 50 ? 50 : limit;
+        const skip = (page - 1) * limit;
         
         const connectionRequests = await ConnectionRequest.find({
             $or:[{fromUserId:loggedInUser._id},{toUserId:loggedInUser._id}]
@@ -70,13 +77,13 @@ userRouter.get("/feed",userAuth, async(req,res)=>{
             hideUserFromFeed.add(req.toUserId.toString());
         });
 
-        //finding user who are not in the hideUserFromFeed and their id is not equal to the loogedInUserId.
+        //finding user who are not in the hideUserFromFeed and their id is not equal to the loggedInUserId.
         const users = await user.find({
             $and:[
                 {_id:{$nin:Array.from(hideUserFromFeed)}},//not in($nin)
                 {_id:{$ne:loggedInUser._id}},//not equal ($ne)
             ],
-        }).select(USER_SAFE_DATA);
+        }).select(USER_SAFE_DATA).skip(skip).limit(limit);
 
         res.send(users);
 
