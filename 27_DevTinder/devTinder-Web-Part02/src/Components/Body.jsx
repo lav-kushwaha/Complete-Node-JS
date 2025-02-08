@@ -8,7 +8,7 @@ const Body = () => {
    <>
     <NavBar/>
     {/*Any children Route of Body or parent route will render in outlet. */}
-    <Outlet/>
+    <Outlet/> {/* This renders child routes like Login/Profile */}
     <Footer/>
    </>
   )
