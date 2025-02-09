@@ -8,6 +8,7 @@ import { BASE_URL } from "../utils/Constant";
 const Login = () => {
   const [emailId, setEmailId] = useState("krish@gmail.com");
   const [password, setPassword] = useState("krish@A123");
+  const [error,setError] = useState();
   const dispatch = useDispatch(); //add data into redux-store
   const navigate = useNavigate(); //redirect into another route
 
@@ -25,15 +26,9 @@ const Login = () => {
     dispatch(addUser(res.data)); //dispatch action
     return navigate("/"); 
 
-    } catch (err) {
-      if (err.response) {
-        console.error("Response Error:", err.response.data);  // API error details
-        console.error("Status Code:", err.response.status);
-      } else if (err.request) {
-        console.error("Request Error:", err.request);
-      } else {
-        console.error("Axios Error:", err.message);
-      }
+    }catch (err) {
+      setError(err?.response?.data || "Something went wrong!!");
+      console.log(err);
     }
   };
   
@@ -77,6 +72,7 @@ const Login = () => {
                 required
               />
             </div>
+            <span className="text-red-400">{error}</span>
             <div className="card-actions justify-center my-4 mt-10">
               <button type="button" onClick={handleSignin} className="btn btn-primary w-full p-3">
                 Login

@@ -10,9 +10,9 @@ const NavBar = () => {
     const userData = useSelector((store)=>store.user);//selecting data from userStore
     const dispatch = useDispatch();
     
-    const Handlelogout = async()=>{
+    const HandleLogout = async()=>{
       try{
-        let userLogout = await axios.post(BASE_URL+"/logout");
+        await axios.post(BASE_URL + "/logout",{},{withCredentials:true});
         dispatch(removeUser());
         return navigate("/login");
       }catch(err){
@@ -54,7 +54,7 @@ const NavBar = () => {
               <a>Settings</a>
             </li>
             <li>
-              <Link onClick={Handlelogout}>Logout</Link>
+              <a onClick={HandleLogout}>Logout</a>
             </li>
           </ul>
         </div>

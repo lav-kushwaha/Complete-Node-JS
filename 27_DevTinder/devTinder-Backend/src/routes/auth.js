@@ -50,7 +50,7 @@ authRouter.post("/login",async(req,res)=>{
             }); 
             res.send(user);
         }else{
-            throw new Error("Invalid credentials..");
+            throw new Error("Invalid credentials.");
         }
 
     }catch(err){
@@ -64,7 +64,8 @@ authRouter.post("/logout", async(req,res)=>{
         expires: new Date(Date.now()),
     });
 
-    res.send("Logout Successfully..");
+    res.status(200).send("Logout Successfully.");
+
 });
 
 module.exports = {authRouter};

@@ -230,3 +230,40 @@ From react-redux:
 - How do you handle async calls in Redux?
 
 ===========================================================================================================================================================================================================================================================
+#📌Short Note on `credentials` in Frontend & Backend
+
+- Purpose:
+  `credentials` are used to **send and receive cookies** (like auth tokens) between the frontend and backend, especially in **cross-origin requests**.
+
+
+#✅Frontend (`withCredentials: true`)
+
+- Usage:
+
+  axios.post(URL, data, { withCredentials: true });
+
+- Purpose: 
+  - Sends cookies (e.g., session tokens) with HTTP requests.  
+  - Ensures browser includes cookies in API calls.
+
+#✅Backend (`credentials: true` in CORS)
+
+- Usage: 
+
+  app.use(cors({
+      origin: "http://localhost:3000",
+      credentials: true
+  }));
+
+- Purpose:
+  - Allows the server to accept cookies from cross-origin requests.  
+  - Enables setting cookies via `Set-Cookie` header.
+
+#🚀Flow: 
+1. **Login:** Frontend sends request → Backend sets cookie → Browser stores it.  
+2. **Authenticated Requests:** Frontend sends cookies with requests.  
+3. **Logout:** Frontend requests logout → Backend clears the cookie.
+
+
+#⚠️Without `credentials`:
+- Cookies won’t be sent or accepted → **Auth issues.**
