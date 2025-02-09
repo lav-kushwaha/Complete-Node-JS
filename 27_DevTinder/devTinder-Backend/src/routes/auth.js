@@ -48,12 +48,7 @@ authRouter.post("/login",async(req,res)=>{
             res.cookie("token",token,{ 
                 expires: new Date(Date.now() + 900000)
             }); 
-            res.json({
-                message:"Login Successfully..",
-                data : user,
-                success:true
-            });
-        
+            res.send(user);
         }else{
             throw new Error("Invalid credentials..");
         }
@@ -69,7 +64,7 @@ authRouter.post("/logout", async(req,res)=>{
         expires: new Date(Date.now()),
     });
 
-    res.send("Logout successfully...");
+    res.send("Logout Successfully..");
 });
 
 module.exports = {authRouter};
