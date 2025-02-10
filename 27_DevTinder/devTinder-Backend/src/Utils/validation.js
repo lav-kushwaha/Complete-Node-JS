@@ -1,5 +1,6 @@
 const validator = require("validator");
 
+//sign up data validation
 const validateSignUpData = (req) =>{
     const {firstName, lastName, emailId, password} = req.body;
 
@@ -12,6 +13,7 @@ const validateSignUpData = (req) =>{
     }
 }
 
+//profile edit validation
 const validateEditProfileData = (req)=>{
     const allowedEditFields = [
         "firstName",
