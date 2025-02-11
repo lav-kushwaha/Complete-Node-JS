@@ -260,10 +260,17 @@ From react-redux:
   - Enables setting cookies via `Set-Cookie` header.
 
 #🚀Flow: 
-1. **Login:** Frontend sends request → Backend sets cookie → Browser stores it.  
-2. **Authenticated Requests:** Frontend sends cookies with requests.  
-3. **Logout:** Frontend requests logout → Backend clears the cookie.
+1. Login: Frontend sends request → Backend sets cookie → Browser stores it.  
+2. Authenticated Requests:** Frontend sends cookies with requests.  
+3. Logout: Frontend requests logout → Backend clears the cookie.
 
 
 #⚠️Without `credentials`:
-- Cookies won’t be sent or accepted → **Auth issues.**
+- Cookies won’t be sent or accepted → Auth issues.
+
+===========================================================================================================================================================================================================================================================
+Note : use && operator whenever you are passing data from API bcs sometimes it takes some time and initially it is undefined.
+ex- 
+- user && (jsx)
+- learn about status code.
+- use curly brackets whenever you are using js in jsx

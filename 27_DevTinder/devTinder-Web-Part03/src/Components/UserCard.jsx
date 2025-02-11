@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
 
 const UserCard = ({data}) => {
-    console.log(data);
-    const {firstName,lastName,photoUrl,about,age,gender} = data;
+  const {firstName,lastName,photoUrl,about,age,gender} = data;
   return (
 <div className="card bg-base-200 w-96 shadow-xl">
   <figure className="px-10 pt-10">
     <img
-      src={data.photoUrl}
+      src={photoUrl}
       alt="Shoes"
       className="rounded-xl" />
   </figure>

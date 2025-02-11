@@ -12,7 +12,7 @@ const Login = () => {
   const dispatch = useDispatch(); //add data into redux-store
   const navigate = useNavigate(); //redirect into another route
 
-  const handleSignin = async () => {
+  const handleLogin = async () => {
     try {  
       const res = await axios.post(BASE_URL+"/login", {
         emailId,
@@ -74,7 +74,7 @@ const Login = () => {
             </div>
             <span className="text-red-400">{error}</span>
             <div className="card-actions justify-center my-4 mt-10">
-              <button type="button" onClick={handleSignin} className="btn btn-primary w-full p-3">
+              <button type="button" onClick={handleLogin} className="btn btn-primary w-full p-3">
                 Login
               </button>
             </div>
