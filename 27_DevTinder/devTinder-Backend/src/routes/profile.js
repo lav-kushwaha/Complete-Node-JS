@@ -18,7 +18,7 @@ profileRouter.get("/profile/view",userAuth,async(req,res)=>{
 });
 
 //profile edit
-profileRouter.patch("/profile/edit/",userAuth, async(req,res)=>{
+profileRouter.patch("/profile/edit",userAuth, async(req,res)=>{
     try{
 
         if(!validateEditProfileData(req)){
@@ -40,8 +40,8 @@ profileRouter.patch("/profile/edit/",userAuth, async(req,res)=>{
         await loggedInUser.save();
 
         res.json({
-            "Message" :loggedInUser.firstName + " your profile updated successfully..",
-            "Data" : loggedInUser
+            message :loggedInUser.firstName + " Your profile updated successfully!",
+            data : loggedInUser
         });
 
     }catch(err){

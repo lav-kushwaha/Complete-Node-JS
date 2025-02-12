@@ -30,10 +30,10 @@ const Feed = () => {
 
   return (
     <>
-    <div className="flex gap-3 mt-3 ml-2">
+    <div className="flex justify-center mt-5 gap-5">
     {
-      feed && feed.map((data)=>(
-        <UserCard key={data._id} data={data}/>
+      feed && feed.map((user)=>(
+        <UserCard key={user._id} user={user}/>
       ))
     }
     </div>

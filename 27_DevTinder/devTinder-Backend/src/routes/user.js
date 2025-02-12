@@ -53,7 +53,7 @@ userRouter.get("/user/connections/", userAuth, async(req,res)=>{
     }catch(err){
         res.sendStatus(400).send("ERROR "+err.message);
     }
-})
+});
 
 //feed API and pagination
 //feed?page=1&limit=10
