@@ -274,3 +274,4 @@ ex-
 - user && (jsx)
 - learn about status code.
 - use curly brackets whenever you are using js in jsx
+- Use {} empty if you don't want to send any data in the post api.

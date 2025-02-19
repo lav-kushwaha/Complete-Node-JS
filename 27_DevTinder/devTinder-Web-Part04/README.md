@@ -40,3 +40,5 @@
 - Send/Ignore the user card from the feed 
 - Signup New User 
 - E2E testing
+
+- BACKEND : ID,SCHEMA,Model,REDUX AND API CODE.
