@@ -1,0 +1,11 @@
+Deployment
+
+1. signup aws
+2. launch instance
+3. chmod 400 <secret>.pem
+4. connected to the machine using SSH chmod:
+ssh -i "devTinder-secret.pem" ubuntu@ec2-16-171-19-249.eu-north-1.compute.amazonaws.com
+- To exit from the machine chmod 
+  - exit hit enter.
+
+4. Install node version 20.15.1(which is already install in system) using git base in ubuntu.
