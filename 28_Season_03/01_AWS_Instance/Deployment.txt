@@ -1,11 +1,47 @@
-Deployment
+#Deployment
 
 1. signup aws
-2. launch instance
-3. chmod 400 <secret>.pem
+2. launch instance (ec2)
+3. chmod 400 <secret>.pem file
 4. connected to the machine using SSH chmod:
 ssh -i "devTinder-secret.pem" ubuntu@ec2-16-171-19-249.eu-north-1.compute.amazonaws.com
 - To exit from the machine chmod 
   - exit hit enter.
 
 4. Install node version 20.15.1(which is already install in system) using git base in ubuntu.
+5. git clone project in ubuntu
+
+6.Frontend (Steps to deployed frontend of IP address)
+
+    - client/
+      - npm install - dependencies on ubuntu
+      - npm run build
+    - we need nginx to host our Frontend project. -
+    - To Install and start nginx command :
+        - sudo apt update
+        - sudo apt install nginx (nginx will give http server)
+        - sudo systemctl start nginx
+        - sudo systemctl enable nginx
+
+    - client/   
+    - copy code from dist(build files) to  /var/www/html/
+    - sudo scp(to copy) -r(recursively) dist/* /var/www/html/ (this command help to copy dist file into /var/www/html/)
+    - Enable port :80 of your instance.
+        - instance
+          - security 
+            - Security groups
+              - Inbound rules
+                - Edit Inbound rules
+                  - Edit inbound rules Info 
+                    - Add Rules 
+                      - Custom TCP
+                      - PORT 80
+                      - / 0.0.0.0/0 -> (it will help to allow access anywhere)
+                    - Save rules (now we can see PORT 80 would be enable).
+    - Instances
+     - Public IPv4 address
+        16.171.19.249 (In this IP address you can see the deployed frontend).
+
+
+
+
