@@ -1,0 +1,81 @@
+summary of everything you did to deploy your DevTinder project on AWS
+
+1. Launched an EC2 Instance on AWS
+- Selected Ubuntu as the OS
+- Created/used a key pair (e.g. `devTinder-secret.pem`)
+- Chose a security group (allowed HTTP, HTTPS, and SSH ports)
+
+2. Connected to EC2 using SSH
+From your local machine (Git Bash or terminal), you connected to the EC2 instance:
+
+chmod 400 devTinder-secret.pem  # Set correct permissions for key file
+ssh -i "devTinder-secret.pem" ubuntu@<your-ec2-ip-address>
+
+3. Installed Required Tools on EC2
+- Updated packages:
+  bash
+  sudo apt update && sudo apt upgrade
+
+- Installed Node Version Manager (NVM):
+  bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  source ~/.bashrc  # or reopen terminal
+
+- Installed Node.js (e.g. version 20.15.1):
+  bash
+  nvm install 20.15.1
+
+- Verified installation:
+  bash
+  node -v
+  npm -v
+
+4. Navigated into Project Directory
+Copied or pulled your `DevTinder` project, then:
+
+bash
+cd DevTinder/client
+
+5. Installed Dependencies & Built Frontend
+In the `client` folder:
+bash
+npm install
+npm run build  # Creates production-ready React app in /build folder
+---
+
+6. Installed and Configured Nginx
+Installed Nginx:
+bash
+sudo apt install nginx
+Checked and started the server:
+bash
+sudo systemctl status nginx
+sudo systemctl start nginx
+
+Replaced Nginx's default config to serve your frontend:
+- Edited `/etc/nginx/sites-available/default` (using `sudo nano` or `vi`)
+- Updated root path to point to your React app:
+ nginx
+  root /home/ubuntu/DevTinder/client/build;
+  index index.html index.htm;
+
+  location / {
+      try_files $uri /index.html;
+  }
+
+- Restarted Nginx:
+  bash
+  sudo systemctl restart nginx
+
+7. Accessed App via EC2 Public IP
+Opened browser → entered:  
+
+http://<your-ec2-ip-address>
+
+🎉 Boom! Your React frontend is live on the internet!
+
+### Optional Next Steps You *Could* Do:
+- 🔐 Set up HTTPS with **Let's Encrypt**
+- 🌐 Point a custom domain to your EC2 IP
+- 📦 Deploy the **backend** (`DevTinder/server`) via Node/Express or Docker
+- 🛡️ Secure your server (firewall, fail2ban, etc.)
