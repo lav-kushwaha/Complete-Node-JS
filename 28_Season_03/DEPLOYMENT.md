@@ -84,20 +84,22 @@ backend: `http://16.171.19.249:3000`
 domain name = `devtinder.com` → `16.171.19.249`  
 frontend = `devtinder.com`  
 
-# Mapping:  
+Mapping:  
 `:3000` (SERVER PORT) → `/api`  
 backend = `devtinder.com:3000` → `devtinder.com/api`
 
 config nginx - `sudo nano /etc/nginx/sites-available/default`  
-server_name 16.171.19.249;
-location /api/ {
-    proxy_pass http://localhost:3000/;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-}
+ ```
+      server_name 16.171.19.249;
+      location /api/ {
+          proxy_pass http://localhost:3000/;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection 'upgrade';
+          proxy_set_header Host $host;
+          proxy_cache_bypass $http_upgrade;
+      }
+ ```
 
 9. Adding a custom Domain name
 
