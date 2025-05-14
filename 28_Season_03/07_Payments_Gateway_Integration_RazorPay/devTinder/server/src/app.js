@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const connectDB = require("./config/database.js");
 const app = express();
@@ -7,7 +8,8 @@ const { profileRouter } = require('./routes/profile.js');
 const {requestRouter} = require("./routes/request.js");
 const{userRouter} = require("./routes/user.js")
 const cors = require('cors');
-require('dotenv').config();
+const paymentRouter = require('./routes/payment.js');
+
 
 
 const PORT = process.env.PORT || 3000;
@@ -27,7 +29,7 @@ app.use(cors({
     }
 ));
 
-app.use("/",authRouter,profileRouter,requestRouter,userRouter);
+app.use("/",authRouter,profileRouter,requestRouter,userRouter,paymentRouter);
 
 // Connect DB and start server
 connectDB()
