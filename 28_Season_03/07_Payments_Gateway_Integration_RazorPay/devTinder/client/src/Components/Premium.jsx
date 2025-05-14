@@ -1,13 +1,39 @@
 import {BASE_URL} from '../utils/Constant'
-import { useSelector } from 'react-redux';
+import axios from 'axios'
 
 const Premium = () => {
    
   const handleBuyClick = async(type)=>{
-      const order = axios.post(BASE_URL + "/payment/create",{ 
-        membershipType:type,
-      },{Credential:true});
 
+      const order = await axios.post(BASE_URL + "/payment/create",
+        { 
+          membershipType:type,
+        },
+        {withCredentials:true}
+      );
+
+      const {amount,currency,notes,orderId} = order?.data?.savedPayment;
+      // Open Razorpay Dialog Box Checkout.
+      const options = {
+        key: order.data.keyId, 
+        amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency,
+        name: 'DevTinder',
+        description: 'Connect to other developers',
+        order_id: orderId, // This is the order_id created in the backend
+        // callback_url: 'http://localhost:3000/payment-success', // Your success URL
+        prefill: {
+          name:notes.firstName + " " + notes.lastName,
+          email:notes.emailId,
+          contact : "9999999999"
+        },
+        theme: {
+          color: '#F37254'
+        },
+      };
+
+     const rzp = new window.Razorpay(options);
+     rzp.open();
   }
 
   return (
@@ -24,7 +50,7 @@ const Premium = () => {
             <li>- Blue Tick</li>
             <li>- 3 months</li>
           </ul>
-          <button onClick={()=>handleByClick("Silver")} className="btn btn-secondary w-full">Buy Silver</button>
+          <button onClick={()=>handleBuyClick("silver")} className="btn btn-secondary w-full">Buy Silver</button>
         </div>
 
         <div className="divider lg:divider-horizontal">OR</div>
@@ -38,7 +64,7 @@ const Premium = () => {
             <li>- Blue Tick</li>
             <li>- 6 months</li>
           </ul>
-          <button onClick={()=>handleByClick("Gold")} className="btn btn-primary w-full">Buy Gold</button>
+          <button onClick={()=>handleBuyClick("gold")} className="btn btn-primary w-full">Buy Gold</button>
         </div>
       </div>
     </div>

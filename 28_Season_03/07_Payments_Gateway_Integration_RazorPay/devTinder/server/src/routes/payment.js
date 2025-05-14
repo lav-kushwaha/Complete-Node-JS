@@ -9,9 +9,10 @@ paymentRouter.post("/payment/create", userAuth, async (req, res) => {
   try {
 
     const {firstName, lastName, emailId} = req.user;
+    
     const {membershipType} = req.body;
 
-    // Create Razorpay order
+    // Create Razorpay order.
     const order = await razorpayInstance.orders.create({
       amount:membershipAmount[membershipType]*100,
       currency: "INR",
@@ -26,7 +27,7 @@ paymentRouter.post("/payment/create", userAuth, async (req, res) => {
 
     // Save payment info in DB
     const payment = new Payment({
-      userID: req.user._id, //This is how we know which user created payment.(auth user)
+      userID: req.user._id, //This is how we know which user created payment.(authUser)
       orderId: order.id,
       status: order.status,
       amount: order.amount,
@@ -38,7 +39,7 @@ paymentRouter.post("/payment/create", userAuth, async (req, res) => {
     const savedPayment = await payment.save();
 
     // Return to frontend
-    res.status(201).json(savedPayment);
+    res.status(201).json({savedPayment, keyId:process.env.RAZORPAY_KEY_ID});
 
   } catch (err) {
     console.error("Payment creation failed:", err);

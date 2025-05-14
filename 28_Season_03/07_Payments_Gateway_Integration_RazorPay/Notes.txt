@@ -42,3 +42,6 @@ Frontend → On payment success → Verify Payment API → Backend → Confirm s
 
 Bonus Tip:
 If you want very high security, always trust webhook + verify payment — because users might close the browser tab after paying!
+
+Links :
+https://razorpay.com/docs/payments/server-integration/nodejs/integration-steps/#integrate-with-razorpay-payment-gateway
