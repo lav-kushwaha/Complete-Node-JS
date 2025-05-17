@@ -5,6 +5,7 @@ const razorpayInstance = require("../Utils/razorpay");
 const Payment = require("../models/payment");
 const {membershipAmount} = require("../Utils/constants");
 const{validateWebhookSignature} = require('razorpay/dist/utils/razorpat-utils');
+const User = require("../models/user");
 
 paymentRouter.post("/payment/create", userAuth, async (req, res) => {
   try {
@@ -52,7 +53,7 @@ paymentRouter.post("/payment/create", userAuth, async (req, res) => {
 paymentRouter.post("/payment/webhook",async(req,res)=>{
     try{
 
-      const webhookSignature = req.get["x-razorpay-signature"];
+      const webhookSignature = req.get("x-razorpay-signature");
       
       const isWebhookValid = validateWebhookSignature(
       JSON.stringify(req.body),
@@ -65,23 +66,30 @@ paymentRouter.post("/payment/webhook",async(req,res)=>{
       }
 
       //update my payment status in DB
+      const paymentDetails = req.body.payload.payment.entity;
+      const payment = await Payment.findOne({orderId:paymentDetails.order_Id});
+      payment.status = paymentDetails.status; //status would be either "captured(success) or failed"
+      await payment.save();
+
+
       //update the user as premium
+      const user = await User.findOne({_id:payment.userId});
+      user.isPremium = true;
+      user.membershipType = payment.notes.membershipType; //either gold or silver
+      await user.save();
+
+      // if(req.body.event ==="payment.captured"){
+      // }
+
+      // if(req.body.event ==="payment.failed"){
+      // }
+
       //return success response to razorpay
-
-      if(req.body.event ==="payment.captured"){
-        
-      }
-
-      if(req.body.event ==="payment.failed"){
-
-      }
-
       return res.status(200).json({msg:"Webhook received successfully"});
 
     }catch(err){
-        
+        return res.status(500).json({msg:err.message});
     }
 })
-
 
 module.exports = paymentRouter;

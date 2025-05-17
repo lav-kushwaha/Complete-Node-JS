@@ -136,3 +136,49 @@
 /feed?page=4&limit=10 => 21-30 => .skip(20) & .limit(10)
 
 skip = (page-1)*limit;
+
+# Sending Emails via SES
+
+* Create an IAM user
+* Give access to `AmazonSESFullAccess`
+* Amazon SES: Create an Identity
+* Verify your domain name
+* Verify an email address identity
+* Install AWS SDK - v3
+* Code Example: [AWS SES Examples](https://github.com/awsdocs/aws-doc-sdk-examples/tree/main/javascriptv3/example_code/ses#code-examples)
+* Setup `SesClient`
+* Access Credentials should be created in IAM under Security Credentials tab
+* Add the credentials to the `.env` file
+* Write code for `SesClient`
+* Write code for sending email address
+* Make the email dynamic by passing more params to the `run` function
+
+# Scheduling cron jobs in NodeJS
+
+* Installing node-cron
+* Learning about cron expressions syntax - crontab.guru
+* Schedule a job
+* date-fns
+* Find all the unique email Id who have got connection Request in previous day
+* Send Email
+* Explore queue mechanism to send bulk emails
+* Amazon SES Bulk Emails
+* Make sendEmail function dynamic
+* bee-queue & bull npm packages
+
+# Razorpay Payment Gateway Integration
+
+* Sign up on Razorpay & complete KYC
+* Created a UI for premium page
+* Creating an API for create order in backend
+* added my key and secret in env file
+* Initialized Razorpay in utils
+* creating order on Razorpay
+* create Schema and model
+* saved the order in payments collection
+* make the API dynamic
+* Setup Razorpay webhook on your live API
+* Ref - [https://github.com/razorpay/razorpay-node/tree/master/documents](https://github.com/razorpay/razorpay-node/tree/master/documents)
+* Ref - [https://razorpay.com/docs/payments/server-integration/nodejs/integration-steps/#integrate-with-razorpay-payment-gateway](https://razorpay.com/docs/payments/server-integration/nodejs/integration-steps/#integrate-with-razorpay-payment-gateway)
+* Ref - [https://razorpay.com/docs/webhooks/validate-test/](https://razorpay.com/docs/webhooks/validate-test/)
+* Ref - [https://razorpay.com/docs/webhooks/payloads/payments/](https://razorpay.com/docs/webhooks/payloads/payments/)
