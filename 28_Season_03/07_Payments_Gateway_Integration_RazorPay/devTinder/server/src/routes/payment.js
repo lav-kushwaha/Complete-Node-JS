@@ -4,6 +4,7 @@ const paymentRouter = express.Router();
 const razorpayInstance = require("../Utils/razorpay");
 const Payment = require("../models/payment");
 const {membershipAmount} = require("../Utils/constants");
+const{validateWebhookSignature} = require('razorpay/dist/utils/razorpat-utils');
 
 paymentRouter.post("/payment/create", userAuth, async (req, res) => {
   try {
@@ -46,6 +47,41 @@ paymentRouter.post("/payment/create", userAuth, async (req, res) => {
     res.status(500).json({ msg: "Payment creation failed. Try again later." });
   }
 });
+
+//This route razorpay will called.
+paymentRouter.post("/payment/webhook",async(req,res)=>{
+    try{
+
+      const webhookSignature = req.get["x-razorpay-signature"];
+      
+      const isWebhookValid = validateWebhookSignature(
+      JSON.stringify(req.body),
+      webhookSignature,
+      process.env.RAZORPAY_WEBHOOK_SECRET
+      );
+
+      if(!isWebhookValid){
+        return res.status(400).json({msg:"Webhook signature is invalid"});
+      }
+
+      //update my payment status in DB
+      //update the user as premium
+      //return success response to razorpay
+
+      if(req.body.event ==="payment.captured"){
+        
+      }
+
+      if(req.body.event ==="payment.failed"){
+
+      }
+
+      return res.status(200).json({msg:"Webhook received successfully"});
+
+    }catch(err){
+        
+    }
+})
 
 
 module.exports = paymentRouter;
