@@ -49,7 +49,7 @@ paymentRouter.post("/payment/create", userAuth, async (req, res) => {
   }
 });
 
-//This route razorpay will called.
+//This route razorpay will called to verify payment.
 paymentRouter.post("/payment/webhook",async(req,res)=>{
     try{
 
@@ -90,6 +90,15 @@ paymentRouter.post("/payment/webhook",async(req,res)=>{
     }catch(err){
         return res.status(500).json({msg:err.message});
     }
+})
+
+//verify Premium
+paymentRouter.get("/premium/verify", userAuth,async(req,res)=>{
+    const user = req.user;
+    if(user.isPremium){
+      return res.json({isPremium:true});
+    }
+    return res.json({isPremium:false});
 })
 
 module.exports = paymentRouter;
