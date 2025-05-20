@@ -1,6 +1,20 @@
-import React from "react";
+import { useState,useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { createSocketConnection } from "../utils/socket";
+import { useSelector } from "react-redux";
 
 const Chat = () => {
+  
+  const{targetUserId} = useParams();
+  const[message, setMessage] = useState([{text:"hello world!!"}]);
+  const user = useSelector((store)=>store.user)
+  const userId = user?._id;
+
+  useEffect(()=>{
+      const socket = createSocketConnection();
+      socket.emit("joinChat", {userId, targetUserId});
+  },[]);
+
   return (
     <div className="flex flex-col h-[70vh] max-w-xl mx-auto my-10 border shadow rounded-md  text-sm">
       
@@ -10,7 +24,7 @@ const Chat = () => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-2 space-y-2 bg-gray-500">
+      <div className="flex-1 overflow-y-auto p-2 space-y-2 bg-gray-800">
         <div className="max-w-xs px-3 py-1.5 bg-blue-500 text-white rounded-lg ml-auto">
           Hello, how are you?
         </div>

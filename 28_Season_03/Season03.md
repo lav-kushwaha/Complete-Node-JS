@@ -197,3 +197,9 @@ config nginx - `sudo nano /etc/nginx/sites-available/default`
 * Ref - [https://razorpay.com/docs/payments/server-integration/nodejs/integration-steps/#integrate-with-razorpay-payment-gateway](https://razorpay.com/docs/payments/server-integration/nodejs/integration-steps/#integrate-with-razorpay-payment-gateway)
 * Ref - [https://razorpay.com/docs/webhooks/validate-test/](https://razorpay.com/docs/webhooks/validate-test/)
 * Ref - [https://razorpay.com/docs/webhooks/payloads/payments/](https://razorpay.com/docs/webhooks/payloads/payments/)
+
+# Real Time Chat using WebSocket(Socket.io)
+* Ref - https://socket.io/docs/v4/
+- Build the UI for a chat window on /chat/:targetUserId
+- Setup socket.io in backend 
+- npm  i socket.io

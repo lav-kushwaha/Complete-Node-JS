@@ -9,7 +9,8 @@ const {requestRouter} = require("./routes/request.js");
 const{userRouter} = require("./routes/user.js")
 const cors = require('cors');
 const paymentRouter = require('./routes/payment.js');
-
+const http = require("http");
+const { initializeSocket } = require('./Utils/socket.js');
 
 
 const PORT = process.env.PORT || 3000;
@@ -31,11 +32,17 @@ app.use(cors({
 
 app.use("/",authRouter,profileRouter,requestRouter,userRouter,paymentRouter);
 
+
+//configuration we need for socket.
+const server = http.createServer(app);
+initializeSocket(server);
+
+
 // Connect DB and start server
 connectDB()
 .then(() => {
     console.log("Database connection established...");
-    app.listen(PORT, () => {
+    server.listen(PORT, () => {
         console.log(`Server is listening on port ${PORT}..`);
     });
 })

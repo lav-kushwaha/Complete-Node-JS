@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/Constant";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailId, setEmailId] = useState("lav@gmail.com");
+  const [password, setPassword] = useState("lav@A123");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [isLoginForm, setIsLoginForm] = useState(true);
@@ -34,7 +34,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-[80vh]">
       <div className="card bg-base-300 shadow-lg rounded-xl p-8 w-full max-w-md">
         <h2 className="text-center text-2xl font-bold">{isLoginForm ? "Login" : "Sign Up"}</h2>
         <p className="text-center text-gray-500">{isLoginForm ? "Sign in to continue" : "Create an account"}</p>
