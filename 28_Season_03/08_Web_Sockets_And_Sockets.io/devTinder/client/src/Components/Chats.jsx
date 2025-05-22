@@ -1,46 +1,32 @@
-import { useState,useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { createSocketConnection } from "../utils/socket";
-import { useSelector } from "react-redux";
+import React from "react";
+import {useParams} from 'react-router-dom'
 
 const Chat = () => {
   
-  const{targetUserId} = useParams();
-  const[message, setMessage] = useState([{text:"hello world!!"}]);
-  const user = useSelector((store)=>store.user)
-  const userId = user?._id;
-
-  useEffect(()=>{
-      const socket = createSocketConnection();
-      socket.emit("joinChat", {userId, targetUserId});
-  },[]);
+  const {targetUserId} = useParams();
 
   return (
-    <div className="flex flex-col h-[70vh] max-w-xl mx-auto my-10 border shadow rounded-md  text-sm">
-      
+    <div className="max-w-4xl mx-auto border border-gray-700 rounded-2xl shadow-lg m-6 h-[75vh] flex flex-col bg-gray-900 text-white">
       {/* Header */}
-      <div className="p-2 border-b bg-gray-800 font-semibold rounded-t-md text-base">
-        Chat with [User Name]
+      <div className="p-6 border-b border-gray-700 text-xl font-semibold">
+        Chat
       </div>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-2 space-y-2 bg-gray-800">
-        <div className="max-w-xs px-3 py-1.5 bg-blue-500 text-white rounded-lg ml-auto">
-          Hello, how are you?
-        </div>
-        <div className="max-w-xs px-3 py-1.5 bg-gray-200 text-black rounded-lg mr-auto">
-          I'm good, thanks!
-        </div>
+      {/* Chat Messages Area */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-4">
+        {/* Example message placeholder */}
+        {/* Replace with actual messages */}
+        <div className="text-center text-gray-400">No messages yet</div>
       </div>
 
-      {/* Input Bar */}
-      <div className="p-2 border-t flex gap-2">
+      {/* Input Area */}
+      <div className="p-4 border-t border-gray-700 flex items-center gap-3 bg-gray-800">
         <input
           type="text"
-          placeholder="Type a message..."
-          className="flex-1 p-1.5 border rounded-lg text-sm focus:outline-none focus:ring"
+          placeholder="Type your message..."
+          className="flex-1 bg-gray-700 border border-gray-600 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button className="px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-sm">
+        <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-5 py-2 rounded-full transition duration-200">
           Send
         </button>
       </div>
