@@ -1,0 +1,29 @@
+{
+  "name": "lav-kushwaha",
+  "version": "1.0.0",
+  "description": "dev tinder",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript"
+  ],
+  "author": "lav kushwaha",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.2",
+    "nodemon": "^3.1.7",
+    "razorpay": "^2.9.6",
+    "socket.io": "^4.8.1",
+    "validator": "^13.12.0"
+  }
+}

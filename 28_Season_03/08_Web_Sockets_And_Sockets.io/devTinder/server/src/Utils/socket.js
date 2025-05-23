@@ -1,4 +1,12 @@
 const socket = require("socket.io");
+const crypto = require("crypto");
+
+const getSecretRoomId = (userId, targetUserId)=>{
+    return crypto
+    .createHash("sha256")
+    .update([userId,targetUserId].sort().join("_"))
+    .digest("hex");
+}
 
 const initializeSocket = (server) => {
   const io = socket(server, {
@@ -10,14 +18,14 @@ const initializeSocket = (server) => {
   io.on("connection", (socket) => {
     // User joins a chat room
     socket.on("joinChat", ({ firstName, userId, targetUserId }) => {
-      const roomId = [userId, targetUserId].sort().join("_");
-      console.log("Joining Room:", firstName, ":", roomId);
+      const roomId = getSecretRoomId(userId,targetUserId);
+    //   console.log("Joining Room:", firstName, ":", roomId);
       socket.join(roomId);
     });
 
     // Handle sending message
     socket.on("sendMessage", ({ firstName, userId, targetUserId, text }) => {
-      const roomId = [userId, targetUserId].sort().join("_");
+      const roomId = getSecretRoomId(userId,targetUserId);
       io.to(roomId).emit("messageReceived", { firstName, text });
     });
 
