@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { createSocketConnection } from "../utils/socket";
 import { useSelector } from "react-redux";
+import { BASE_URL } from "../utils/Constant";
+import axios from 'axios'
+
 
 const Chat = () => {
   const { targetUserId } = useParams();
@@ -9,6 +12,28 @@ const Chat = () => {
   const [newMessage, setNewMessage] = useState("");
   const user = useSelector((store) => store.user);
   const userId = user?._id;
+
+  const fetchChatMessages = async()=>{
+    
+    const chat = await axios.get(BASE_URL + "/chat/"+ targetUserId,{
+      withCredentials:true
+    });
+
+    // console.log(chat.data.messages);
+    const chatMessages = chat?.data?.messages.map((msg)=>{
+      return {
+        firstName:msg?.firstName, 
+        lastName: msg?.lastName,
+        text:msg?.text
+      }
+    });
+
+    setMessages(chatMessages)
+  };
+
+  useEffect(()=>{
+    fetchChatMessages();
+  },[])
 
   useEffect(() => {
     if (!userId) return;
@@ -29,7 +54,7 @@ const Chat = () => {
 
     return () => socket.disconnect();
     
-  }, [userId, targetUserId, user.firstName]);
+  }, [userId, targetUserId]);
 
   const sendMessage = () => {
     //.trim() is a string method that removes whitespace from both ends of a string.
@@ -66,7 +91,7 @@ const Chat = () => {
               }`}
             >
               <div className="bg-blue-600 rounded-lg px-4 py-2 max-w-xs">
-                <span className="font-bold">{msg.firstName}:</span> {msg.text}
+                <span className="font-bold">{`${msg.firstName} ${msg.lastName}`}:</span> {msg.text}
               </div>
             </div>
           ))
