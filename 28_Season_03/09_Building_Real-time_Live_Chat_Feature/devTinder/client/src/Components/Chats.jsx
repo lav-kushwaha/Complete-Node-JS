@@ -28,7 +28,7 @@ const Chat = () => {
       }
     });
 
-    setMessages(chatMessages)
+    setMessages(chatMessages);
   };
 
   useEffect(()=>{
