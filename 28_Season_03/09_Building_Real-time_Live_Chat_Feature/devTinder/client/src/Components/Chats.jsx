@@ -31,10 +31,12 @@ const Chat = () => {
     setMessages(chatMessages);
   };
 
+//useEffect
   useEffect(()=>{
     fetchChatMessages();
   },[])
 
+//useEffect
   useEffect(() => {
     if (!userId) return;
 
