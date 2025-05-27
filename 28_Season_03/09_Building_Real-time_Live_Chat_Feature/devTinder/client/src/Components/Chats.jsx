@@ -58,6 +58,7 @@ const Chat = () => {
     
   }, [userId, targetUserId]);
 
+//sendMessage
   const sendMessage = () => {
     //.trim() is a string method that removes whitespace from both ends of a string.
     if (!newMessage.trim()) return;
