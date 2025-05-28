@@ -1,6 +1,7 @@
 const socket = require("socket.io");
 const crypto = require("crypto");
 const { Chat } = require("../models/chat");
+const ConnectionRequest = require("../models/connectionRequest");
 
 // Generate a unique room ID for two users by hashing their sorted IDs
 const getSecretRoomId = (userId, targetUserId) => {
@@ -30,9 +31,23 @@ const initializeSocket = (server) => {
     });
 
     // Handle sending a new message
-    socket.on("sendMessage", async ({ firstName,lastName, userId, targetUserId, text }) => {
+    socket.on("sendMessage", async ({ firstName, lastName, userId, targetUserId, text }) => {
       try {
-       const roomId = getSecretRoomId(userId, targetUserId);
+        const roomId = getSecretRoomId(userId, targetUserId);
+
+        //check if the userID and toUserID are friends
+        const connection = await ConnectionRequest.findOne({
+          status: "accepted",
+          $or: [
+            { fromUserId: userId, toUserId: targetUserId },
+            { fromUserId: targetUserId, toUserId: userId }
+          ]
+        });
+
+        if (!connection) {
+          console.warn(`Connection not accepted between ${userId} and ${targetUserId}`);
+          return;
+        }
 
         // Check if chat between the two users exists
         let chat = await Chat.findOne({
@@ -44,14 +59,14 @@ const initializeSocket = (server) => {
           chat = new Chat({
             participants: [userId, targetUserId],
             messages: [],
-          })
+          });
         }
 
         // Push new message to messages array
         chat.messages.push({
           senderId: userId,
           text,
-        })
+        });
 
         // Save chat to the database
         await chat.save();
