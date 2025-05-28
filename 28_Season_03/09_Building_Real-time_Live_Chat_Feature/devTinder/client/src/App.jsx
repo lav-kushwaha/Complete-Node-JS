@@ -9,6 +9,7 @@ import Connections from "./Components/Connections.jsx";
 import Request from "./Components/Request.jsx";
 import Premium from "./Components/Premium.jsx";
 import Chats from './Components//Chats.jsx'
+import LandingPage from "./Components/LandingPage.jsx";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
       {/*Parent Route "/" is Body Component and login,profile are child route of Body which is render in outlet ex-Body.jsx*/}
       <Route path="/" element={<Body/>}>
         {/*child route of body-component */}
-        <Route path="/" element={<Feed/>}></Route>
+        <Route path="/" element={<LandingPage/>}></Route>
+        <Route path="feed" element={<Feed/>}></Route>
         <Route path="login" element={<Login/>}></Route>
         <Route path="profile" element={<Profile/>}></Route>
         <Route path="connections" element={<Connections/>}></Route>
