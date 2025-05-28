@@ -36,7 +36,9 @@ Each folder or file corresponds to a key concept or milestone in the development
 24. `24_Logical_DB_Query_Compound_Indexes` – Logical queries and indexing  
 25. `25_Ref_Populate_Thought_process_of_writing_APIs` – MongoDB ref & populate  
 26. `26_Building_Feed_API_Pagination` – Feed API with pagination  
-27. `27_DevTinder` – Final app version  
+27. `27_DevTinder-UI` – UI of DevTinder
+28. `28_Season_03` – AWS, Ngnix, Payment Gateway Integration, Web Socket and Socket.io etc. 
+29. `29_DevTinder-Complete` – Devtinder Production Ready
 
 ---
 
@@ -50,7 +52,7 @@ Each folder or file corresponds to a key concept or milestone in the development
 - ⚙️ Fully integrated frontend + backend
 - 🧼 Password encryption with bcrypt
 - 🔄 Secure API handling with Axios & Express
-
+- 💬 Real-time chat with Socket.io
 ---
 
 ## 🛠️ Tech Stack
@@ -133,11 +135,13 @@ npm start
 
 ## 🧠 Future Enhancements
 
-- ✅ Add real-time chat with Socket.io  
-- ✅ UI overhaul with Tailwind or Material UI  
-- 🔄 Real-time request/connection status updates  
-- 🌍 Deployment on Vercel/Render with MongoDB Atlas  
+- ✅ UI overhaul with Tailwind CSS or Material UI
+- 🔄 Real-time request/connection status updates
+- 🌍 Deployment on Vercel or Render with MongoDB Atlas
 - 🧪 Add unit & integration testing
+- 💬 Show online status and last seen in chat
+- 🔍 User search functionality
+- 💎 Premium user features (e.g., boost visibility, unlimited swipes, blue tick etc)
 
 ---
 
