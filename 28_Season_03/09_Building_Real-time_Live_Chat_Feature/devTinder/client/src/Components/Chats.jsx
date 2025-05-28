@@ -3,85 +3,93 @@ import { useParams } from "react-router-dom";
 import { createSocketConnection } from "../utils/socket";
 import { useSelector } from "react-redux";
 import { BASE_URL } from "../utils/Constant";
-import axios from 'axios'
-
+import axios from 'axios';
 
 const Chat = () => {
   const { targetUserId } = useParams();
+
+  // State to store chat messages displayed in the UI
   const [messages, setMessages] = useState([]);
+
+  // State to track the value of the input field for sending a new message
   const [newMessage, setNewMessage] = useState("");
+  
+  // Getting the current logged-in user's details from Redux store
   const user = useSelector((store) => store.user);
   const userId = user?._id;
 
-  const fetchChatMessages = async()=>{
-    
-    const chat = await axios.get(BASE_URL + "/chat/"+ targetUserId,{
-      withCredentials:true
+  // Fetch chat messages between current user and target user from the database
+  const fetchChatMessages = async () => {
+    const chat = await axios.get(`${BASE_URL}/chat/${targetUserId}`, {
+      withCredentials: true,
     });
 
-    // console.log(chat.data.messages);
-    const chatMessages = chat?.data?.messages.map((msg)=>{
+    // Map messages to display sender's name and message text
+    const chatMessages = chat?.data?.messages.map((msg) => {
+      const { senderId, text } = msg;
       return {
-        firstName:msg?.firstName, 
-        lastName: msg?.lastName,
-        text:msg?.text
-      }
+        firstName: senderId?.firstName,
+        lastName: senderId?.lastName,
+        text,
+      };
     });
 
     setMessages(chatMessages);
   };
 
-//useEffect
-  useEffect(()=>{
+  // On initial render, fetch existing chat messages
+  useEffect(() => {
     fetchChatMessages();
-  },[])
+  }, []);
 
-//useEffect
+  // Setup WebSocket connection when userId and targetUserId are available
   useEffect(() => {
     if (!userId) return;
 
     const socket = createSocketConnection();
 
+    // Notify server that user has joined the chat
     socket.emit("joinChat", {
       firstName: user.firstName,
       userId,
       targetUserId,
     });
 
-    socket.on("messageReceived", ({ firstName, text }) => {
-      //prevMessages is just the current value of "messages".
-      //...prevMessages spreads that array into a new one.
-      setMessages((prevMessages) => [...prevMessages, { firstName, text }]);
+    // Listen for new messages from the server
+    socket.on("messageReceived", ({ firstName, lastName, text }) => {
+      setMessages((prevMessages) => [...prevMessages, { firstName, lastName, text }]);
     });
 
+    // Clean up socket connection on component unmount
     return () => socket.disconnect();
-    
   }, [userId, targetUserId]);
 
-//sendMessage
+  // Send a new message to the server via WebSocket
   const sendMessage = () => {
-    //.trim() is a string method that removes whitespace from both ends of a string.
-    if (!newMessage.trim()) return;
+    if (!newMessage.trim()) return; // Prevent sending empty messages
 
     const socket = createSocketConnection();
+
     socket.emit("sendMessage", {
       firstName: user.firstName,
+      lastName:user.lastName,
       userId,
       targetUserId,
       text: newMessage,
     });
 
-    setNewMessage("");
+    setNewMessage(""); // Clear input after sending
   };
 
   return (
     <div className="max-w-4xl mx-auto border border-gray-700 rounded-2xl shadow-lg m-6 h-[75vh] flex flex-col bg-gray-900 text-white">
+      
       {/* Header */}
       <div className="p-6 border-b border-gray-700 text-xl font-semibold">
         Chat
       </div>
 
-      {/* Chat Messages Area */}
+      {/* Chat Messages Display Area */}
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {messages.length === 0 ? (
           <div className="text-center text-gray-400">No messages yet</div>
@@ -101,7 +109,7 @@ const Chat = () => {
         )}
       </div>
 
-      {/* Input Area */}
+      {/* Message Input and Send Button */}
       <div className="p-4 border-t border-gray-700 flex items-center gap-3 bg-gray-800">
         <input
           value={newMessage}
