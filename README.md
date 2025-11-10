@@ -31,15 +31,14 @@ Each folder or file corresponds to a key concept or milestone in the development
 19. `19_Diving_into_the_apis` – API development  
 20. `20_Data_Sanitization_And_Schema_Validations` – Data sanitization & validation  
 21. `21_Encrypting_passwords` – Password encryption  
-22. `22_Authentication_JWT_And_Cookies` – Auth using JWT and cookies  
-23. `23_Diving_into_the_APls_and_express_Router` – Express router APIs  
-24. `24_Logical_DB_Query_Compound_Indexes` – Logical queries and indexing  
-25. `25_Ref_Populate_Thought_process_of_writing_APIs` – MongoDB ref & populate  
-26. `26_Building_Feed_API_Pagination` – Feed API with pagination  
-27. `27_DevTinder-UI` – UI of DevTinder
+22. `22_Authentication_JWT_And_Cookies` – Auth using JWT and cookies. 
+23. `23_Diving_into_the_APls_and_express_Router` – Express router APIs. 
+24. `24_Logical_DB_Query_Compound_Indexes` – Logical queries and indexing. 
+25. `25_Ref_Populate_Thought_process_of_writing_APIs` – MongoDB ref & populate.  
+26. `26_Building_Feed_API_Pagination` – Feed API with pagination.
+27. `27_DevTinder-UI` – UI of DevTinder.
 28. `28_Season_03` – AWS, Ngnix, Payment Gateway Integration, Web Socket and Socket.io etc. 
-29. `29_DevTinder-Complete` – Devtinder Production Ready
-
+29. `29_DevTinder-Complete` – Devtinder Production Ready.
 ---
 
 ## 📸 Features
@@ -69,7 +68,6 @@ Each folder or file corresponds to a key concept or milestone in the development
 - Redux
 - Axios
 - React Router DOM
-
 ---
 
 ## 🚦 How It Works
